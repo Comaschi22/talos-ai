@@ -2085,7 +2085,7 @@ document.getElementById('ob-form').addEventListener('submit', function(e) {
   document.getElementById('ob-bcd').innerHTML =
     `<strong>BUSINESS    </strong>${d.nombre}\n<strong>INDUSTRY    </strong>${d.industria} — ${d.zona}\n<strong>PRODUCT     </strong>${d.producto}\n<strong>COMPETITION </strong>${d.competidores}\n\n<strong>VOICE       </strong>${d.tono}\n<strong>BRAND DESC  </strong>${d.voz}\n<strong>AVOID       </strong>${d.evitar}\n<strong>USE         </strong>${d.usar}\n\n<strong>CLIENT      </strong>${d.cliente}\n<strong>PAINS       </strong>${d.dolores}\n<strong>OBJECTIONS  </strong>${d.objeciones}\n\n<strong>GOAL        </strong>${d.meta}\n<strong>BUDGET      </strong>${d.presupuesto}\n<strong>CHANNELS    </strong>${d.canales}\n<strong>EMAIL       </strong>${d.email}\n<strong>DATE        </strong>${d.fecha}`;
 
-  fetch('https://hook.us2.make.com/yncm1o4cn5i8wd1xib2aovpjw9q1d5i8', {
+  fetch('https://hook.us2.make.com/deusawob1pzbj3baqrmocos1u4zxnc3s', {
     method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(d)
   }).catch(()=>{});
 
