@@ -10,16 +10,23 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Talos AI — The Autonomous Guardian of Your Business">
 <meta property="og:description" content="Stop paying $2,000/month to a marketing agency. Talos runs your ads, creates your content, and optimizes your budget — 24/7, autonomously.">
-<meta property="og:image" content="https://images.unsplash.com/photo-1664575602554-2087b04935a5?w=1200&q=80">
+<meta property="og:image" content="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80">
 <meta property="og:url" content="https://ai-talos.com">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Talos AI — The Autonomous Guardian of Your Business">
 <meta name="twitter:description" content="Stop paying $2,000/month to a marketing agency. Talos runs your ads, creates your content, and optimizes your budget — 24/7, autonomously.">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1664575602554-2087b04935a5?w=1200&q=80">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80">
+<meta name="theme-color" content="#060608">
+<link rel="icon" type="image/x-icon" href="./favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Instrument+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}}
 :root{
   --bg:#060608;
   --surface:#0e0e12;
@@ -36,8 +43,9 @@
   --radius:2px;
 }
 
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;color-scheme:dark}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+button,a,[role="button"]{touch-action:manipulation}
 
 /* Offset for fixed nav + urgency bar */
 section, div[id]{scroll-margin-top:96px}
@@ -97,8 +105,19 @@ nav{
 }
 .nav-cta:hover{background:var(--gold2)!important}
 
+.nav-web-badge{
+  display:inline-flex;align-items:center;gap:5px;
+}
+.nav-web-badge::after{
+  content:'WEB';
+  background:var(--gold);color:#000;
+  font-family:var(--mono);font-size:7px;font-weight:700;
+  letter-spacing:0.12em;padding:2px 5px;border-radius:1px;
+  animation:pulse 2s ease-in-out infinite;
+}
+
 .nav-mobile-btn{display:none;background:none;border:none;cursor:pointer;padding:4px}
-.nav-mobile-btn span{display:block;width:22px;height:1.5px;background:var(--text);margin:5px 0;transition:all 0.3s}
+.nav-mobile-btn span{display:block;width:22px;height:1.5px;background:var(--text);margin:5px 0;transition:transform 0.3s,opacity 0.3s,background 0.3s}
 
 /* ── HERO ── */
 #hero{
@@ -109,7 +128,7 @@ nav{
 
 .hero-bg-img{
   position:absolute;inset:0;z-index:-1;
-  background:url('https://images.unsplash.com/photo-1664575602554-2087b04935a5?w=1800&q=80&auto=format') center/cover no-repeat;
+  background:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1800&q=80&auto=format') center/cover no-repeat;
 }
 .hero-gradient{
   position:absolute;inset:0;z-index:0;
@@ -143,6 +162,7 @@ nav{
   letter-spacing:-0.02em;color:var(--text);
   margin-bottom:24px;
   animation:fadeUp 0.8s ease both 0.3s;
+  text-wrap:balance;
 }
 .hero-h1 .gold{
   color:var(--gold);
@@ -174,7 +194,7 @@ nav{
   font-family:var(--sans);font-size:12px;font-weight:600;
   letter-spacing:0.1em;text-transform:uppercase;
   padding:16px 36px;border:none;cursor:pointer;
-  text-decoration:none;transition:all 0.2s;
+  text-decoration:none;transition:background 0.2s,transform 0.2s,color 0.2s;
   border-radius:var(--radius);
 }
 .btn-primary:hover{background:var(--gold2);transform:translateY(-1px)}
@@ -188,10 +208,29 @@ nav{
   font-family:var(--sans);font-size:12px;font-weight:400;
   letter-spacing:0.08em;text-transform:uppercase;
   padding:16px 28px;cursor:pointer;
-  text-decoration:none;transition:all 0.2s;
+  text-decoration:none;transition:border-color 0.2s,color 0.2s;
   border-radius:var(--radius);
 }
 .btn-outline:hover{border-color:rgba(255,255,255,0.35);color:var(--text)}
+
+/* ── WEB CTA BUTTON (hero) ── */
+.btn-web-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;
+  border:1px solid rgba(212,168,67,0.35);
+  color:var(--gold);
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:0.1em;text-transform:uppercase;
+  padding:16px 24px;cursor:pointer;
+  text-decoration:none;
+  transition:border-color 0.2s,background 0.2s,color 0.2s;
+  border-radius:var(--radius);
+}
+.btn-web-cta:hover{border-color:var(--gold);background:var(--gold-dim);color:var(--gold2)}
+.btn-web-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--gold);
+  animation:pulse 2s ease-in-out infinite;flex-shrink:0;
+}
 
 /* Scroll indicator */
 .scroll-indicator{
@@ -229,6 +268,7 @@ nav{
 .proof-num{
   font-family:var(--display);font-size:26px;font-weight:700;
   color:var(--gold);letter-spacing:-0.02em;line-height:1;
+  font-variant-numeric:tabular-nums;
 }
 .proof-label{
   font-family:var(--mono);font-size:9px;letter-spacing:0.12em;
@@ -254,6 +294,7 @@ section{padding:100px 40px;position:relative;z-index:2}
   font-size:clamp(32px,4.5vw,64px);
   font-weight:700;line-height:0.95;
   letter-spacing:-0.02em;margin-bottom:8px;
+  text-wrap:balance;
 }
 .section-h2 em{color:var(--gold);font-style:normal}
 
@@ -307,7 +348,7 @@ section{padding:100px 40px;position:relative;z-index:2}
 }
 .photo-break-img{
   position:absolute;inset:0;
-  background:url('https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1600&q=80&auto=format') center/cover no-repeat;
+  background:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&q=80&auto=format') center/cover no-repeat;
   transform:scale(1.05);
   transition:transform 0.1s linear;
 }
@@ -439,7 +480,7 @@ section{padding:100px 40px;position:relative;z-index:2}
 }
 .photo-break-2-img{
   position:absolute;inset:0;
-  background:url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&q=80&auto=format') center 30%/cover no-repeat;
+  background:url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&q=80&auto=format') center 40%/cover no-repeat;
 }
 .photo-break-2-overlay{
   position:absolute;inset:0;
@@ -501,6 +542,7 @@ section{padding:100px 40px;position:relative;z-index:2}
 .plan-val{
   font-family:var(--display);font-size:56px;font-weight:700;
   color:var(--gold);line-height:1;
+  font-variant-numeric:tabular-nums;
 }
 .plan.featured .plan-val{color:#000}
 .plan-period{font-family:var(--mono);font-size:10px;color:var(--muted)}
@@ -532,7 +574,7 @@ section{padding:100px 40px;position:relative;z-index:2}
   letter-spacing:0.1em;text-transform:uppercase;
   padding:15px;cursor:pointer;border:none;
   background:#1a1a22;color:rgba(240,240,244,0.5);
-  transition:all 0.2s;border-radius:var(--radius);
+  transition:background 0.2s,color 0.2s;border-radius:var(--radius);
 }
 .plan-btn:hover{background:#242430;color:var(--text)}
 .plan.featured .plan-btn{background:#000;color:#fff}
@@ -567,7 +609,7 @@ section{padding:100px 40px;position:relative;z-index:2}
 }
 .faq-icon::before,.faq-icon::after{
   content:'';position:absolute;
-  background:var(--muted);transition:all 0.3s;
+  background:var(--muted);transition:transform 0.3s,opacity 0.3s;
 }
 .faq-icon::before{width:12px;height:1px;top:50%;left:50%;transform:translate(-50%,-50%)}
 .faq-icon::after{width:1px;height:12px;top:50%;left:50%;transform:translate(-50%,-50%)}
@@ -648,9 +690,10 @@ section{padding:100px 40px;position:relative;z-index:2}
   font-family:var(--sans);font-size:12px;font-weight:600;
   letter-spacing:0.1em;text-transform:uppercase;
   padding:16px 32px;border:none;cursor:pointer;
-  transition:all 0.2s;border-radius:var(--radius);
+  transition:background 0.2s,opacity 0.2s;border-radius:var(--radius);
   align-self:flex-start;margin-top:4px;
 }
+.contact-btn:disabled{opacity:0.6;cursor:not-allowed}
 .contact-btn:hover{background:var(--gold2)}
 
 .contact-success{
@@ -670,7 +713,7 @@ section{padding:100px 40px;position:relative;z-index:2}
 }
 .ob-hero-img{
   position:absolute;inset:0;
-  background:url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1600&q=80&auto=format') center 40%/cover no-repeat;
+  background:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600&q=80&auto=format') center 35%/cover no-repeat;
 }
 .ob-hero-overlay{
   position:absolute;inset:0;
@@ -787,7 +830,7 @@ section{padding:100px 40px;position:relative;z-index:2}
   background:#080810;border:1px solid #141420;
   color:var(--muted);font-size:11px;
   padding:7px 14px;cursor:pointer;
-  transition:all 0.15s;user-select:none;border-radius:var(--radius);
+  transition:border-color 0.15s,color 0.15s,background 0.15s;user-select:none;border-radius:var(--radius);
 }
 .chip:hover{border-color:#2a2a3a;color:var(--text)}
 .chip.selected{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
@@ -802,7 +845,7 @@ section{padding:100px 40px;position:relative;z-index:2}
   font-family:var(--sans);font-size:11px;font-weight:600;
   letter-spacing:0.1em;text-transform:uppercase;
   padding:14px 30px;cursor:pointer;border:none;
-  transition:all 0.2s;border-radius:var(--radius);
+  transition:background 0.2s,color 0.2s;border-radius:var(--radius);
 }
 .btn-w:hover{background:var(--gold);color:#000}
 .btn-ghost-f{
@@ -811,7 +854,7 @@ section{padding:100px 40px;position:relative;z-index:2}
   font-family:var(--sans);font-size:11px;font-weight:400;
   letter-spacing:0.08em;text-transform:uppercase;
   padding:14px 24px;cursor:pointer;
-  transition:all 0.2s;border-radius:var(--radius);
+  transition:border-color 0.2s,color 0.2s;border-radius:var(--radius);
 }
 .btn-ghost-f:hover{color:var(--text);border-color:#2a2a34}
 .btn-gold-f{
@@ -819,7 +862,7 @@ section{padding:100px 40px;position:relative;z-index:2}
   font-family:var(--sans);font-size:11px;font-weight:600;
   letter-spacing:0.1em;text-transform:uppercase;
   padding:14px 30px;cursor:pointer;border:none;
-  transition:all 0.2s;border-radius:var(--radius);
+  transition:background 0.2s;border-radius:var(--radius);
 }
 .btn-gold-f:hover{background:var(--gold2)}
 
@@ -849,6 +892,68 @@ section{padding:100px 40px;position:relative;z-index:2}
 }
 .bcd-content strong{color:#3a3a4a;font-weight:400}
 
+/* ── WEB DESIGN BRIDGE STRIP ── */
+.web-bridge{
+  background:linear-gradient(135deg,rgba(212,168,67,0.08) 0%,rgba(212,168,67,0.03) 100%);
+  border-top:1px solid rgba(212,168,67,0.2);
+  border-bottom:1px solid rgba(212,168,67,0.2);
+  padding:36px 40px;position:relative;z-index:2;overflow:hidden;
+}
+.web-bridge::before{
+  content:'WEB';position:absolute;right:-20px;top:50%;transform:translateY(-50%);
+  font-family:var(--display);font-size:120px;font-weight:900;
+  color:rgba(212,168,67,0.04);letter-spacing:0.1em;line-height:1;pointer-events:none;
+}
+.web-bridge-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:32px;flex-wrap:wrap;
+}
+.web-bridge-left{flex:1;min-width:280px}
+.web-bridge-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:9px;letter-spacing:0.2em;
+  color:var(--gold);text-transform:uppercase;margin-bottom:10px;
+}
+.web-bridge-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--gold);
+  animation:pulse 2s ease-in-out infinite;flex-shrink:0;
+}
+.web-bridge-headline{
+  font-family:var(--display);font-size:clamp(22px,3vw,36px);
+  font-weight:700;line-height:1;letter-spacing:-0.02em;
+  color:var(--text);margin-bottom:8px;text-wrap:balance;
+}
+.web-bridge-headline em{color:var(--gold);font-style:normal}
+.web-bridge-sub{
+  font-size:13px;font-weight:300;color:var(--muted);line-height:1.6;
+}
+.web-bridge-right{display:flex;flex-direction:column;align-items:flex-end;gap:16px;flex-shrink:0}
+.web-bridge-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.web-bridge-tag{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.1em;
+  color:var(--muted);text-transform:uppercase;
+  padding:5px 10px;border:1px solid var(--border);
+}
+.web-bridge-tag strong{color:var(--gold);font-weight:600}
+.web-bridge-tag-hot{border-color:rgba(212,168,67,0.3);color:var(--gold);background:var(--gold-dim)}
+.web-bridge-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold);color:#000;
+  font-family:var(--sans);font-size:11px;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  padding:14px 28px;border:none;cursor:pointer;
+  text-decoration:none;border-radius:var(--radius);
+  transition:background 0.2s,transform 0.2s;white-space:nowrap;
+}
+.web-bridge-cta:hover{background:var(--gold2);transform:translateY(-1px)}
+.web-bridge-cta svg{width:12px;height:12px;transition:transform 0.2s}
+.web-bridge-cta:hover svg{transform:translateX(3px)}
+@media(max-width:1024px){
+  .web-bridge{padding:28px 24px}
+  .web-bridge-right{align-items:flex-start}
+}
+
 /* ── META-MARKETING STRIP ── */
 .mm-strip{
   background:var(--gold);padding:16px 40px;
@@ -866,6 +971,35 @@ section{padding:100px 40px;position:relative;z-index:2}
   letter-spacing:0.06em;color:#000;line-height:1.6;
 }
 .mm-strip strong{font-weight:600}
+
+/* ── STICKY MOBILE WEB CTA ── */
+.sticky-web-bar{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;z-index:90;
+  background:var(--gold);
+  padding:14px 20px;
+  align-items:center;justify-content:space-between;gap:12px;
+  border-top:1px solid var(--gold2);
+}
+.sticky-web-bar p{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.08em;
+  color:#000;line-height:1.4;font-weight:500;
+}
+.sticky-web-bar strong{font-weight:700}
+.sticky-web-bar a{
+  background:#000;color:var(--gold);
+  font-family:var(--mono);font-size:9px;font-weight:700;
+  letter-spacing:0.12em;text-transform:uppercase;
+  padding:10px 16px;text-decoration:none;border-radius:var(--radius);
+  white-space:nowrap;transition:background 0.2s;flex-shrink:0;
+}
+.sticky-web-bar a:hover{background:#1a1a00}
+.sticky-web-close{
+  background:none;border:none;cursor:pointer;
+  color:rgba(0,0,0,0.4);font-size:18px;line-height:1;
+  flex-shrink:0;padding:0 4px;
+}
+@media(max-width:768px){.sticky-web-bar{display:flex}}
 
 /* ── FOOTER ── */
 footer{
@@ -965,7 +1099,7 @@ footer{
 .fund-h2 em{color:var(--gold);font-style:normal}
 .fund-sub{font-size:14px;font-weight:300;color:var(--muted);line-height:1.7;max-width:540px;margin-bottom:32px}
 .fund-spots{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
-.fund-spot{width:34px;height:34px;border-radius:50%;border:1px solid rgba(212,168,67,0.2);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;transition:all 0.2s}
+.fund-spot{width:34px;height:34px;border-radius:50%;border:1px solid rgba(212,168,67,0.2);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;transition:background 0.2s,border-color 0.2s,color 0.2s}
 .fund-spot.taken{background:var(--gold-dim);border-color:var(--gold);color:var(--gold)}
 .fund-spot.open{color:rgba(240,240,244,0.1)}
 .fund-spots-label{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:var(--muted);margin-bottom:32px}
@@ -1019,6 +1153,23 @@ footer{
 }
 .serv-meta-text strong{color:var(--gold);font-weight:500}
 
+/* ── SERVICIOS LAUNCH BAR ── */
+.serv-launch-bar{
+  display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;
+  margin-top:20px;
+  background:rgba(212,168,67,0.06);
+  border:1px solid rgba(212,168,67,0.2);
+  padding:10px 16px;
+  font-family:var(--mono);font-size:10px;letter-spacing:0.06em;
+  color:var(--muted);line-height:1.5;
+}
+.serv-launch-fire{font-size:12px;flex-shrink:0}
+.serv-launch-link{
+  color:var(--gold);text-decoration:none;font-weight:600;white-space:nowrap;
+  transition:color 0.2s;
+}
+.serv-launch-link:hover{color:var(--gold2)}
+
 /* ── SERVICIOS ── */
 #servicios{background:var(--surface);padding:100px 40px}
 .servicios-inner{max-width:1200px;margin:0 auto}
@@ -1029,9 +1180,147 @@ footer{
 }
 
 .servicios-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:2px;
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;
   margin-bottom:48px;
 }
+
+/* Launch promo badge */
+.serv-launch{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,80,40,.1);border:1px solid rgba(255,80,40,.3);
+  color:#ff6b4a;font-family:var(--mono);font-size:8px;
+  letter-spacing:.15em;text-transform:uppercase;padding:3px 10px;
+  margin-bottom:14px;
+}
+.serv-launch::before{content:'🔥';font-size:9px}
+.serv-price-orig{
+  font-family:var(--mono);font-size:12px;color:var(--muted);
+  text-decoration:line-through;margin-bottom:2px;
+}
+
+/* ── BEACON DEMO SECTION ── */
+#beacon-demo{background:var(--bg);padding:100px 40px;overflow:hidden}
+.beacon-demo-inner{max-width:1100px;margin:0 auto}
+.beacon-demo-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:64px;align-items:center;
+}
+.beacon-demo-copy .eyebrow{margin-bottom:16px}
+.beacon-demo-copy h2{
+  font-family:var(--display);font-size:clamp(28px,4vw,48px);
+  font-weight:700;letter-spacing:.02em;line-height:1.05;
+  margin-bottom:16px;
+}
+.beacon-demo-copy h2 em{color:var(--gold);font-style:normal}
+.beacon-demo-copy p{
+  font-size:14px;font-weight:300;color:var(--muted);
+  line-height:1.75;max-width:440px;margin-bottom:28px;
+}
+.beacon-stats{display:flex;flex-direction:column;gap:12px}
+.bs-item{
+  display:flex;align-items:flex-start;gap:12px;
+  font-size:13px;color:rgba(240,240,244,.6);line-height:1.5;
+}
+.bs-item::before{
+  content:'→';color:var(--gold);font-family:var(--mono);
+  font-size:11px;flex-shrink:0;margin-top:1px;
+}
+
+/* BEACON terminal card */
+.bc-wrap{position:relative}
+.bc-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:380px;height:380px;border-radius:50%;
+  background:radial-gradient(circle,rgba(212,168,67,.06) 0%,transparent 65%);
+  pointer-events:none;z-index:0;
+}
+.beacon-terminal{
+  position:relative;z-index:1;
+  background:rgba(8,8,10,.96);border:1px solid rgba(255,255,255,.09);
+  border-radius:0;overflow:hidden;
+  box-shadow:0 32px 80px rgba(0,0,0,.55),0 0 0 1px rgba(212,168,67,.06);
+}
+.bt-chrome{
+  background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.06);
+  padding:12px 16px;display:flex;align-items:center;gap:7px;
+}
+.bt-dot{width:10px;height:10px;border-radius:50%}
+.bt-dot-r{background:#FF5F56}.bt-dot-y{background:#FFBD2E}.bt-dot-g{background:#27C93F}
+.bt-label{
+  font-family:var(--mono);font-size:10px;color:rgba(240,240,244,.3);
+  letter-spacing:.08em;margin-left:8px;
+}
+.bt-live{
+  margin-left:auto;display:flex;align-items:center;gap:5px;
+}
+.bt-live-dot{
+  width:5px;height:5px;border-radius:50%;background:#27C93F;
+  animation:btpulse 1.5s ease-in-out infinite;
+}
+@keyframes btpulse{0%,100%{opacity:.4;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+.bt-live-label{
+  font-family:var(--mono);font-size:9px;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(39,201,63,.65);
+}
+.bt-ctx{
+  padding:14px 18px 10px;display:flex;flex-direction:column;gap:5px;
+}
+.bt-ctx-row{
+  display:flex;align-items:center;gap:0;
+  font-family:var(--mono);font-size:10.5px;
+}
+.bt-key{color:rgba(212,168,67,.55);min-width:68px;font-weight:500}
+.bt-val{color:rgba(240,240,244,.45)}
+.bt-hr{height:1px;background:rgba(255,255,255,.05);margin:2px 18px 14px}
+.bt-output{padding:0 18px 16px}
+.bt-output-lbl{
+  font-family:var(--mono);font-size:8.5px;letter-spacing:1.4px;
+  text-transform:uppercase;color:rgba(212,168,67,.55);margin-bottom:8px;
+}
+.bt-output-text{
+  font-size:12.5px;font-weight:300;color:rgba(240,240,244,.7);
+  line-height:1.72;min-height:72px;
+}
+.bt-cursor{
+  display:inline-block;width:2px;height:13px;background:var(--gold);
+  margin-left:1px;vertical-align:text-bottom;
+  animation:blink .85s step-end infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.bt-tabs{display:flex;gap:5px;padding:0 18px 12px;margin-top:4px}
+.bt-tab{
+  font-family:var(--mono);font-size:9px;font-weight:600;
+  letter-spacing:.5px;text-transform:uppercase;
+  padding:4px 10px;border-radius:0;transition:color .2s,background .2s,border-color .2s;cursor:default;
+  color:rgba(240,240,244,.22);background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.05);
+}
+.bt-tab.active{
+  background:var(--gold-dim);border-color:rgba(212,168,67,.25);
+  color:rgba(212,168,67,.8);
+}
+.bt-foot{
+  padding:10px 18px 16px;border-top:1px solid rgba(255,255,255,.04);
+  display:flex;align-items:center;gap:12px;
+}
+.bt-prog{flex:1;height:2px;background:rgba(255,255,255,.05);overflow:hidden}
+.bt-prog-fill{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,var(--gold),var(--gold2));
+  transition:width .1s linear;
+}
+.bt-foot-txt{
+  font-family:var(--mono);font-size:9px;
+  color:rgba(240,240,244,.22);letter-spacing:.1px;white-space:nowrap;
+}
+
+@media(max-width:1024px){
+  .servicios-grid{grid-template-columns:1fr}
+  .beacon-demo-grid{grid-template-columns:1fr;gap:40px}
+  .beacon-demo-copy p{max-width:100%}
+  #beacon-demo{padding:80px 24px}
+}
+@media(max-width:640px){.servicios-grid{grid-template-columns:1fr}}
 
 .serv-card{
   background:var(--bg);border:1px solid var(--border);
@@ -1119,7 +1408,7 @@ footer{
   font-family:var(--sans);font-size:11px;font-weight:600;
   letter-spacing:0.1em;text-transform:uppercase;
   padding:14px 28px;border:none;cursor:pointer;
-  text-decoration:none;transition:all 0.2s;
+  text-decoration:none;transition:background 0.2s,transform 0.2s;
   border-radius:var(--radius);
 }
 .serv-btn:hover{background:var(--gold2);transform:translateY(-1px)}
@@ -1185,6 +1474,7 @@ footer{
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:4px;z-index:9999;background:var(--gold);color:#000;padding:8px 16px;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none" onfocus="this.style.left='16px'" onblur="this.style.left='-9999px'">Skip to content</a>
 
 <!-- NAV -->
 <nav>
@@ -1198,7 +1488,7 @@ footer{
     <li><a href="#como-funciona" id="nav-como">How it works</a></li>
     <li><a href="#modulos" id="nav-modulos">Modules</a></li>
     <li><a href="#planes" id="nav-planes">Pricing</a></li>
-    <li><a href="#servicios" id="nav-servicios">Services</a></li>
+    <li><a href="#servicios" id="nav-servicios" class="nav-web-badge">Services</a></li>
     <li><a href="#faq" id="nav-faq">FAQ</a></li>
     <li><a href="#contacto" id="nav-contacto">Contact</a></li>
     <li><a href="#fundadores" class="nav-cta" id="nav-cta">Get Started</a></li>
@@ -1222,12 +1512,12 @@ footer{
     <div class="ub-spot open"></div>
     <div class="ub-spot open"></div>
   </div>
-  <p id="ub-text"><strong>8 of 10 Founder spots remaining</strong> — Lock in $199/mo forever. Price rises to $299 when SENTRY launches.</p>
+  <p id="ub-text"><strong>8 of 10 Founder spots remaining</strong> — Lock in $199/mo forever. Also: <a href="#servicios" style="color:var(--gold2);text-decoration:underline;text-decoration-style:dotted">Web design from $250 →</a></p>
   <a href="#fundadores" class="ub-cta" id="ub-cta">Claim yours →</a>
 </div>
 
 <!-- ① HERO -->
-<section id="hero" style="padding:0">
+<section id="hero" style="padding:0" aria-label="Hero">
   <div class="hero-bg-img"></div>
   <div class="hero-gradient"></div>
   <div class="hero-content">
@@ -1244,6 +1534,10 @@ footer{
         <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
       </a>
       <a href="#modulos" class="btn-outline" id="hero-btn2">How it works</a>
+      <a href="#servicios" class="btn-web-cta" id="hero-btn3">
+        <span class="btn-web-dot"></span>
+        Need a website?
+      </a>
     </div>
   </div>
   <div class="scroll-indicator">
@@ -1408,6 +1702,63 @@ footer{
           <li>Human escalation for complex cases</li>
         </ul>
         <span class="mod-soon" id="mod3-soon">// Roadmap Phase 3</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEACON LIVE DEMO -->
+<section id="beacon-demo">
+  <div class="beacon-demo-inner">
+    <div class="beacon-demo-grid">
+      <!-- Left: copy -->
+      <div class="beacon-demo-copy reveal-left">
+        <div class="eyebrow">Live Preview</div>
+        <h2>BEACON IN<br><em>ACTION.</em></h2>
+        <p>This is what happens when you complete the onboarding form. BEACON reads your business context and generates 3 ready-to-publish ad campaigns — in minutes, autonomously, every week.</p>
+        <div class="beacon-stats">
+          <div class="bs-item">Campaign copy tailored to your brand voice and target customer</div>
+          <div class="bs-item">Three angles: Pain Point, Social Proof, Aspirational</div>
+          <div class="bs-item">Adapted for Meta Ads, Instagram, and Google (formats vary per platform)</div>
+          <div class="bs-item">Delivered to your email — review and publish in one click</div>
+        </div>
+      </div>
+      <!-- Right: terminal -->
+      <div class="bc-wrap reveal-right">
+        <div class="bc-glow"></div>
+        <div class="beacon-terminal">
+          <div class="bt-chrome">
+            <div class="bt-dots" style="display:flex;gap:6px">
+              <span class="bt-dot bt-dot-r"></span>
+              <span class="bt-dot bt-dot-y"></span>
+              <span class="bt-dot bt-dot-g"></span>
+            </div>
+            <span class="bt-label">BEACON · Campaign Generation</span>
+            <div class="bt-live">
+              <span class="bt-live-dot"></span>
+              <span class="bt-live-label">Live</span>
+            </div>
+          </div>
+          <div class="bt-ctx">
+            <div class="bt-ctx-row"><span class="bt-key">Business</span><span class="bt-val" id="btBiz">Downtown Plumbing Co.</span></div>
+            <div class="bt-ctx-row"><span class="bt-key">Market</span><span class="bt-val" id="btMkt">Indianapolis, IN</span></div>
+            <div class="bt-ctx-row"><span class="bt-key">Goal</span><span class="bt-val" id="btGoal">Emergency service bookings</span></div>
+          </div>
+          <div class="bt-hr"></div>
+          <div class="bt-output">
+            <div class="bt-output-lbl" id="btLabel">Campaign 01 · Pain Point</div>
+            <div class="bt-output-text" id="btText"></div><span class="bt-cursor"></span>
+          </div>
+          <div class="bt-tabs">
+            <div class="bt-tab active" id="btTab0">Campaign 01</div>
+            <div class="bt-tab" id="btTab1">Campaign 02</div>
+            <div class="bt-tab" id="btTab2">Campaign 03</div>
+          </div>
+          <div class="bt-foot">
+            <div class="bt-prog"><div class="bt-prog-fill" id="btFill"></div></div>
+            <span class="bt-foot-txt" id="btStatus">Generating campaign text...</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1605,97 +1956,165 @@ footer{
   </div>
 </section>
 
+<!-- ── WEB DESIGN BRIDGE ── -->
+<div class="web-bridge" id="web-bridge-strip">
+  <div class="web-bridge-inner">
+    <div class="web-bridge-left">
+      <div class="web-bridge-eyebrow">
+        <span class="web-bridge-dot"></span>
+        New · One-Time Service
+      </div>
+      <p class="web-bridge-headline">No website yet?<br><em>We build it for you.</em></p>
+      <p class="web-bridge-sub">Professional design, bilingual copy, domain & hosting — live in 7 days. From $250.</p>
+    </div>
+    <div class="web-bridge-right">
+      <div class="web-bridge-tags">
+        <span class="web-bridge-tag">From&nbsp;<strong>$250</strong></span>
+        <span class="web-bridge-tag">Live in&nbsp;<strong>7 days</strong></span>
+        <span class="web-bridge-tag web-bridge-tag-hot">🔥&nbsp;Launch&nbsp;Week&nbsp;Pricing</span>
+      </div>
+      <a href="#servicios" class="web-bridge-cta">
+        See web design plans
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
 <!-- SERVICIOS ONE-TIME -->
 <section id="servicios">
   <div class="servicios-inner">
     <div class="servicios-header reveal">
       <div class="eyebrow" id="serv-eyebrow">One-Time Services</div>
       <h2 class="section-h2" id="serv-h2">WE BUILD IT.<br><em>YOU LAUNCH IT.</em></h2>
-      <p id="serv-sub">Don't have a website yet? Need a full digital presence from scratch? Talos builds everything — design, copy, hosting — so you can focus on running your business. Subscribers get an exclusive discount.</p>
+      <p id="serv-sub">No website yet? Need a professional digital presence fast? We design everything — or hand you the files so you publish it yourself. Three tiers, one goal: your business online and generating leads.</p>
+      <div class="serv-launch-bar reveal">
+        <span class="serv-launch-fire">🔥</span>
+        <span id="serv-launch-copy">Launch Week pricing ends soon — prices go up permanently after this window.</span>
+        <a href="#contacto" class="serv-launch-link" id="serv-launch-cta">Lock in your price →</a>
+      </div>
     </div>
 
     <div class="servicios-grid">
 
-      <!-- TALOS WEB -->
+      <!-- TALOS STARTER -->
       <div class="serv-card reveal delay-1">
+        <div class="serv-launch">Launch Price</div>
         <div class="serv-tag">
-          <span>// One-time project</span>
-          <span class="serv-tag-badge">AI-BUILT</span>
+          <span>// HTML delivery</span>
+          <span class="serv-tag-badge">DIY-READY</span>
         </div>
-        <div class="serv-name" id="sw-name">TALOS WEB</div>
-        <p class="serv-tagline" id="sw-tagline">Your professional landing page, built and deployed by Talos AI. Ready in 72 hours.</p>
+        <div class="serv-name" id="sw-name">TALOS<br>STARTER</div>
+        <p class="serv-tagline" id="sw-tagline">You get the site. You publish it yourself. We walk you through every step.</p>
 
         <div class="serv-price-wrap">
           <div class="serv-price">
-            <span class="serv-price-val">$997</span>
+            <div>
+              <div class="serv-price-orig">Was $299</div>
+              <span class="serv-price-val">$250</span>
+            </div>
             <span class="serv-price-period">one-time</span>
           </div>
-          <div class="serv-discount">
-            <div class="serv-discount-label" id="sw-disc-label">With active plan</div>
-            <div class="serv-discount-val"><s>$997</s> → <strong>$697</strong></div>
-          </div>
         </div>
-        <div class="serv-save" id="sw-save">Save $300 when you have an active VISION, SHIELD or TITAN plan</div>
+        <div class="serv-save" id="sw-save">🔥 Save $49 — Launch Week only</div>
 
         <hr class="serv-hr">
         <ul class="serv-feats" id="sw-feats">
-          <li>Professional landing page designed by AI</li>
-          <li>Copy written by Talos based on your business</li>
-          <li>Mobile-first, fully responsive</li>
-          <li>Bilingual (EN + ES) with auto language detection</li>
-          <li>Hosted and deployed — ready to share</li>
-          <li>Onboarding form connected to your Airtable</li>
+          <li>Custom design for your industry &amp; brand</li>
+          <li>Mobile-first, SEO-ready, bilingual option</li>
+          <li>Contact form + WhatsApp button included</li>
+          <li>Your Google reviews showcased</li>
+          <li>You receive the full HTML file to publish</li>
+          <li>Step-by-step domain + hosting guide included</li>
+          <li>1 design revision round</li>
         </ul>
         <a href="#contacto" class="serv-btn" id="sw-btn">
-          Get Talos Web
+          Get Starter
           <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
         </a>
       </div>
 
-      <!-- TALOS FULL LAUNCH -->
+      <!-- TALOS PRO -->
       <div class="serv-card featured-serv reveal delay-2">
+        <div class="serv-launch">Launch Price</div>
         <div class="serv-tag">
-          <span>// Complete package</span>
-          <span class="serv-tag-badge">MOST COMPLETE</span>
+          <span>// Full service</span>
+          <span class="serv-tag-badge">MOST POPULAR</span>
         </div>
-        <div class="serv-name" id="sfl-name">TALOS FULL<br>LAUNCH</div>
-        <p class="serv-tagline" id="sfl-tagline">We handle everything. Design, copy, hosting, domain, and your first autonomous campaign. Zero to live in 5 days.</p>
+        <div class="serv-name" id="sfl-name">TALOS<br>PRO</div>
+        <p class="serv-tagline" id="sfl-tagline">We design AND publish. You only handle the domain — we guide you step by step.</p>
 
         <div class="serv-price-wrap">
           <div class="serv-price">
-            <span class="serv-price-val">$1,497</span>
+            <div>
+              <div class="serv-price-orig">Was $699</div>
+              <span class="serv-price-val">$550</span>
+            </div>
             <span class="serv-price-period">one-time</span>
           </div>
-          <div class="serv-discount">
-            <div class="serv-discount-label" id="sfl-disc-label">With active plan</div>
-            <div class="serv-discount-val"><s>$1,497</s> → <strong>$997</strong></div>
-          </div>
         </div>
-        <div class="serv-save" id="sfl-save">Save $500 when you have an active VISION, SHIELD or TITAN plan</div>
+        <div class="serv-save" id="sfl-save">🔥 Save $149 — Launch Week · First change always FREE</div>
 
         <hr class="serv-hr">
         <ul class="serv-feats" id="sfl-feats">
-          <li>Everything in Talos Web</li>
-          <li>Custom domain setup & hosting included</li>
-          <li>Make.com automation flows configured</li>
-          <li>First BEACON campaign generated & ready</li>
-          <li>Email automation connected and tested</li>
-          <li>30-day post-launch support</li>
-          <li>1 revision round included</li>
+          <li>Everything in Starter</li>
+          <li>We publish the site for you</li>
+          <li>Hosting setup &amp; configuration included</li>
+          <li>You manage domain (we guide you through it)</li>
+          <li>2 design revision rounds</li>
+          <li><strong style="color:var(--gold)">First modification FREE</strong> — then $39.99 each</li>
+          <li>30-day post-launch email support</li>
         </ul>
         <a href="#contacto" class="serv-btn" id="sfl-btn">
-          Get Talos Full Launch
+          Get Talos Pro
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
+        </a>
+      </div>
+
+      <!-- TALOS PREMIUM -->
+      <div class="serv-card reveal delay-3">
+        <div class="serv-launch">Launch Price</div>
+        <div class="serv-tag">
+          <span>// All-inclusive</span>
+          <span class="serv-tag-badge">ZERO HASSLE</span>
+        </div>
+        <div class="serv-name" id="sp-name">TALOS<br>PREMIUM</div>
+        <p class="serv-tagline" id="sp-tagline">We handle absolutely everything. Domain, design, hosting, publication. You just approve and go live.</p>
+
+        <div class="serv-price-wrap">
+          <div class="serv-price">
+            <div>
+              <div class="serv-price-orig">Was $999</div>
+              <span class="serv-price-val">$850</span>
+            </div>
+            <span class="serv-price-period">one-time</span>
+          </div>
+        </div>
+        <div class="serv-save" id="sp-save">🔥 Save $149 — Launch Week · Domain 1 year included</div>
+
+        <hr class="serv-hr">
+        <ul class="serv-feats" id="sp-feats">
+          <li>Everything in Pro</li>
+          <li><strong style="color:var(--gold)">.com domain registered for 1 year</strong></li>
+          <li>SSL certificate (security padlock) included</li>
+          <li>Google Business profile optimization</li>
+          <li>Live in 7 days — or your money back</li>
+          <li>60-day post-launch support</li>
+          <li>3 design revision rounds</li>
+        </ul>
+        <a href="#contacto" class="serv-btn" id="sp-btn">
+          Get Premium
           <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
         </a>
       </div>
 
     </div>
 
-    <!-- Note -->
+    <!-- INTEGRATIONS ADD-ON -->
     <div class="serv-note reveal">
-      <div class="serv-note-icon">💡</div>
+      <div class="serv-note-icon">⚡</div>
       <div class="serv-note-text" id="serv-note-text">
-        <strong>The smartest move:</strong> activate SHIELD ($199/mo) first, then order Talos Full Launch at the discounted price of $997 instead of $1,497. Your first month of SHIELD costs $199 — the discount alone saves you $500. Net gain: $301 in your favor from day one.
+        <strong>Need more power?</strong> Add integrations to any website plan — priced by complexity level. <strong>Level 1 from $35</strong> (WhatsApp button, contact form, Google Maps) up to <strong>Level 10 at $1,200</strong> (payment gateway, online booking system, custom automations, CRM sync). One-time fee. You describe what you need — we quote the level.
       </div>
     </div>
 
@@ -1774,25 +2193,25 @@ footer{
       <form class="contact-form" id="contact-form" novalidate>
         <div class="cf-row">
           <div class="cf-field">
-            <label id="cf-name-lbl">Your name</label>
-            <input type="text" id="cf-name" placeholder="John Smith" required>
+            <label id="cf-name-lbl" for="cf-name">Your name</label>
+            <input type="text" id="cf-name" name="nombre" autocomplete="name" placeholder="John Smith…" required>
           </div>
           <div class="cf-field">
-            <label id="cf-email-lbl">Email</label>
-            <input type="email" id="cf-email" placeholder="john@business.com" required>
+            <label id="cf-email-lbl" for="cf-email">Email</label>
+            <input type="email" id="cf-email" name="email" autocomplete="email" placeholder="john@business.com…" required spellcheck="false">
           </div>
         </div>
         <div class="cf-field">
-          <label id="cf-biz-lbl">Business name</label>
-          <input type="text" id="cf-biz" placeholder="Your Business LLC">
+          <label id="cf-biz-lbl" for="cf-biz">Business name</label>
+          <input type="text" id="cf-biz" name="negocio" autocomplete="organization" placeholder="Your Business LLC…">
         </div>
         <div class="cf-field">
-          <label id="cf-msg-lbl">Message</label>
-          <textarea id="cf-msg" placeholder="Tell us about your business and what you need..." required></textarea>
+          <label id="cf-msg-lbl" for="cf-msg">Message</label>
+          <textarea id="cf-msg" name="mensaje" placeholder="Tell us about your business and what you need…" required></textarea>
         </div>
         <button type="submit" class="contact-btn" id="cf-btn">Send message →</button>
       </form>
-      <div class="contact-success" id="contact-success">
+      <div class="contact-success" id="contact-success" aria-live="polite" role="status">
         <strong id="cs-title">Message received. ✓</strong><br>
         <span id="cs-body">We'll get back to you within 24 hours. In the meantime, feel free to explore the onboarding form below.</span>
       </div>
@@ -1935,7 +2354,7 @@ footer{
           <div class="btn-row"><button type="button" class="btn-ghost-f" onclick="oGoTo(3)" id="btn-back4">← Back</button><button type="submit" class="btn-gold-f" id="btn-submit">Activate Talos →</button></div>
         </div>
       </form>
-      <div class="ob-success" id="ob-success">
+      <div class="ob-success" id="ob-success" aria-live="polite" role="status">
         <div class="ob-success-icon">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#d4a843" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 10 8 15 17 6"/></svg>
         </div>
@@ -1949,6 +2368,13 @@ footer{
     </div>
   </div>
 </section>
+
+<!-- STICKY MOBILE WEB BAR -->
+<div class="sticky-web-bar" id="sticky-web-bar">
+  <p><strong>Need a website?</strong><br>From $250 · Live in 7 days</p>
+  <a href="#servicios">See plans</a>
+  <button class="sticky-web-close" id="sticky-web-close" aria-label="Close">×</button>
+</div>
 
 <!-- META-MARKETING STRIP -->
 <div class="mm-strip">
@@ -1999,8 +2425,25 @@ document.querySelectorAll('.faq-q').forEach(btn => {
 /* ── CONTACT FORM ── */
 document.getElementById('contact-form').addEventListener('submit', function(e) {
   e.preventDefault();
-  this.style.display = 'none';
-  document.getElementById('contact-success').style.display = 'block';
+  const btn = document.getElementById('cf-btn');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  const d = {
+    type: 'contact',
+    nombre: document.getElementById('cf-name').value,
+    email: document.getElementById('cf-email').value,
+    negocio: document.getElementById('cf-biz').value || '—',
+    mensaje: document.getElementById('cf-msg').value,
+    fecha: new Date().toISOString().split('T')[0]
+  };
+  fetch('https://hook.us2.make.com/deusawob1pzbj3baqrmocos1u4zxnc3s', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(d)
+  }).catch(() => {}).finally(() => {
+    this.style.display = 'none';
+    document.getElementById('contact-success').style.display = 'block';
+  });
 });
 
 /* ── CHIPS ── */
@@ -2079,6 +2522,17 @@ document.getElementById('ob-form').addEventListener('submit', function(e) {
   }
 });
 
+/* ── STICKY WEB BAR CLOSE ── */
+const stickyWebBar = document.getElementById('sticky-web-bar');
+const stickyWebClose = document.getElementById('sticky-web-close');
+if(stickyWebClose && stickyWebBar){
+  stickyWebClose.addEventListener('click', () => {
+    stickyWebBar.style.display = 'none';
+    sessionStorage.setItem('webBarClosed', '1');
+  });
+  if(sessionStorage.getItem('webBarClosed')) stickyWebBar.style.display = 'none';
+}
+
 /* ── MOBILE MENU ── */
 const navToggle = document.getElementById('nav-toggle');
 const navLinks = document.querySelector('.nav-links');
@@ -2098,12 +2552,12 @@ navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMen
 /* ── LANGUAGE DETECTION ── */
 const es = {
   'nav-problema':'El Problema','nav-como':'Cómo funciona','nav-modulos':'Módulos','nav-planes':'Precios',
-  'nav-faq':'FAQ','nav-contacto':'Contacto','nav-cta':'Empezar',
+  'nav-faq':'FAQ','nav-contacto':'Contacto','nav-cta':'Empezar','nav-servicios':'Servicios Web',
   'hero-tag':'El Guardián Autónomo de tu Empresa',
   'hero-h1':'TU<br>NEGOCIO<br>EN <span class="gold">PILOTO<br>AUTOMÁTICO.</span>',
   'hero-sub':'Talos AI es un sistema de agentes autónomos que gestiona tu marketing, contabilidad y operaciones — 24/7, sin supervisión constante.',
   'hero-sub-es':'Talos AI is your autonomous business guardian.',
-  'hero-btn1':'Activar Talos','hero-btn2':'Cómo funciona',
+  'hero-btn1':'Activar Talos','hero-btn2':'Cómo funciona','hero-btn3':'¿Necesitás un sitio web?',
   'proof1-lbl':'de las PyMEs priorizan marketing con IA',
   'proof2-lbl':'menos que una agencia de marketing',
   'proof3-lbl':'operación autónoma',
@@ -2163,8 +2617,15 @@ const es = {
   'sfl-disc-label':'Con plan activo',
   'sfl-save':'Ahorrás $500 cuando tenés un plan VISION, SHIELD o TITAN activo',
   'sfl-feats-list':['Todo lo de Talos Web','Configuración de dominio propio y hosteo incluido','Flujos de Make.com configurados','Primera campaña BEACON generada y lista','Automatización de email conectada y testeada','30 días de soporte post-lanzamiento','1 ronda de revisiones incluida'],
-  'sfl-btn':'Obtener Talos Full Launch',
-  'serv-note-text':'<strong>El movimiento más inteligente:</strong> activá SHIELD ($199/mes) primero, luego pedí Talos Full Launch al precio con descuento de $997 en vez de $1,497. Tu primer mes de SHIELD cuesta $199 — el descuento solo te ahorra $500. Ganancia neta: $301 a tu favor desde el día uno.',
+  'sfl-btn':'Obtener Talos Pro',
+  'sp-name':'TALOS<br>PREMIUM',
+  'sp-tagline':'Nos encargamos de absolutamente todo. Dominio, diseño, hosteo y publicación. Vos solo aprobás y salís en vivo.',
+  'sp-save':'🔥 Ahorrás $149 — Semana de lanzamiento · Dominio 1 año incluido',
+  'sp-feats-list':['Todo lo de Pro','<strong style="color:var(--gold)">.com registrado por 1 año</strong>','Certificado SSL incluido','Optimización de perfil de Google Business','En vivo en 7 días — o te devolvemos el dinero','60 días de soporte post-lanzamiento','3 rondas de revisiones'],
+  'sp-btn':'Obtener Premium',
+  'serv-launch-copy':'Los precios de la Semana de Lanzamiento se terminan pronto — después suben permanentemente.',
+  'serv-launch-cta':'Asegurate el precio →',
+  'serv-note-text':'<strong>¿Necesitás más potencia?</strong> Agregá integraciones a cualquier plan — el precio depende del nivel de complejidad. <strong>Nivel 1 desde $35</strong> (botón de WhatsApp, formulario de contacto, Google Maps) hasta <strong>Nivel 10 a $1,200</strong> (pasarela de pago, reservas online, automatizaciones personalizadas, sincronización con CRM). Pago único. Nos contás lo que necesitás — nosotros cotizamos el nivel.',
   'serv-meta-label':'// Demo en vivo',
   'serv-meta-text':'La estás mirando. Esta página completa — el diseño, el copy, la estrategia, las automatizaciones — fue construida usando exactamente este servicio. De cero a publicada en una sesión. <strong>Esto es lo que construimos para vos.</strong>',
   'faq-h2':'¿PREGUNTAS?<br><em>RESPONDIDAS.</em>',
@@ -2270,10 +2731,10 @@ function applyLang(lang) {
     if(ul && es[key]) ul.querySelectorAll('li').forEach((li,j) => { if(es[key][j]) li.textContent = es[key][j]; });
   });
   // Service feature lists
-  ['sw','sfl'].forEach(prefix => {
+  ['sw','sfl','sp'].forEach(prefix => {
     const ul = document.getElementById(`${prefix}-feats`);
     const key = `${prefix}-feats-list`;
-    if(ul && es[key]) ul.querySelectorAll('li').forEach((li,j) => { if(es[key][j]) li.textContent = es[key][j]; });
+    if(ul && es[key]) ul.querySelectorAll('li').forEach((li,j) => { if(es[key][j]) li.innerHTML = es[key][j]; });
   });
   // FAQ inner spans
   document.querySelectorAll('.faq-q span').forEach((span,i) => {
@@ -2304,6 +2765,65 @@ if(lang.startsWith('es')) {
   document.documentElement.lang = 'es';
   applyLang('es');
 }
+
+/* ── BEACON TERMINAL ANIMATION ── */
+const BT_SESSIONS = [
+  {
+    biz:'Downtown Plumbing Co.', mkt:'Indianapolis, IN', goal:'Emergency service bookings',
+    campaigns:[
+      {label:'Campaign 01 · Pain Point', text:'Burst pipe at 2am? We respond in 60 minutes — guaranteed. Downtown Plumbing has 366 five-star reviews in Indianapolis. Call now. We answer 24/7.'},
+      {label:'Campaign 02 · Social Proof', text:'Your neighbors trust us. Downtown Plumbing — 366 verified 5-star reviews — is the most trusted plumber in Indianapolis. Book online in 30 seconds →'},
+      {label:'Campaign 03 · Aspirational', text:'Stop overpaying for slow plumbers. Downtown Plumbing arrives in 60 minutes, fixes it right the first time. Guaranteed — or the call is free.'}
+    ]
+  },
+  {
+    biz:'Physical Chiropractic Tampa Bay', mkt:'Tampa, FL', goal:'New patient appointments',
+    campaigns:[
+      {label:'Campaign 01 · Pain Point', text:'Back pain keeping you up at night? Physical Chiropractic has 189 perfect 5-star reviews and same-day appointments available. Book in 60 seconds.'},
+      {label:'Campaign 02 · Social Proof', text:"Tampa's most trusted chiropractor — 5.0 stars from 189 patients. Most insurance accepted. New patients welcome. See why everyone recommends us."},
+      {label:'Campaign 03 · Aspirational', text:"Don't live with the pain. Physical Chiropractic of Tampa Bay: 5-star care, same-day availability, and a team that actually listens. Book your first visit today."}
+    ]
+  }
+];
+let btSession=0, btCamp=0, btChar=0, btErasing=false;
+function btGetEl(id){return document.getElementById(id)}
+function btUpdateTabs(i){for(let j=0;j<3;j++){const t=btGetEl('btTab'+j);if(t)t.classList.toggle('active',j===i)}}
+function btSetProg(p){const f=btGetEl('btFill');if(f)f.style.width=p+'%'}
+function btAnimate(){
+  if(!btGetEl('btText'))return;
+  const s=BT_SESSIONS[btSession], c=s.campaigns[btCamp], el=btGetEl('btText');
+  if(!btErasing){
+    if(btChar===0){
+      btGetEl('btBiz').textContent=s.biz;
+      btGetEl('btMkt').textContent=s.mkt;
+      btGetEl('btGoal').textContent=s.goal;
+      btGetEl('btLabel').textContent=c.label;
+      btGetEl('btStatus').textContent='Generating campaign text...';
+      btUpdateTabs(btCamp);el.textContent='';
+    }
+    if(btChar<c.text.length){
+      el.textContent+=c.text[btChar];btChar++;
+      btSetProg(Math.round(btChar/c.text.length*100));
+      setTimeout(btAnimate,18+Math.random()*10);
+    } else {
+      btGetEl('btStatus').textContent='✓ Campaign ready to publish';
+      btSetProg(100);
+      setTimeout(()=>{btErasing=true;btAnimate();},2600);
+    }
+  } else {
+    if(btChar>0){
+      el.textContent=c.text.substring(0,btChar-1);btChar--;
+      btSetProg(Math.round(btChar/c.text.length*100));
+      setTimeout(btAnimate,7);
+    } else {
+      btErasing=false;btCamp=(btCamp+1)%s.campaigns.length;
+      if(btCamp===0)btSession=(btSession+1)%BT_SESSIONS.length;
+      btGetEl('btStatus').textContent='Processing next campaign...';
+      setTimeout(btAnimate,450);
+    }
+  }
+}
+setTimeout(btAnimate,1200);
 </script>
 </body>
 </html>
