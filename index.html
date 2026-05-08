@@ -2485,25 +2485,32 @@ document.getElementById('ob-form').addEventListener('submit', function(e) {
   req.forEach(el => { el.classList.remove('error'); if(!el.value.trim()){ el.classList.add('error'); ok=false; } });
   if(!ok) return;
 
+  // Sanitize: remove characters that break JSON string interpolation in Make
+  function clean(v) {
+    return (v || '—').replace(/"/g, "'").replace(/\\/g, '').replace(/[\r\n\t]+/g, ' ').replace(/\s+/g, ' ').trim() || '—';
+  }
+
   const canales = [...document.querySelectorAll('#ob-chips input:checked')].map(c=>c.value).join(', ')||'—';
   const d = {
-    nombre:document.getElementById('f-nombre').value,
-    industria:document.getElementById('f-industria').value,
-    zona:document.getElementById('f-zona').value,
-    producto:document.getElementById('f-producto').value,
-    competidores:document.getElementById('f-competidores').value||'—',
-    tono:document.getElementById('f-tono').value,
-    voz:document.getElementById('f-voz').value||'—',
-    evitar:document.getElementById('f-evitar').value||'—',
-    usar:document.getElementById('f-usar').value||'—',
-    cliente:document.getElementById('f-cliente').value,
-    dolores:document.getElementById('f-dolores').value,
-    objeciones:document.getElementById('f-objeciones').value||'—',
-    meta:document.getElementById('f-meta').value,
-    presupuesto:document.getElementById('f-presupuesto').value,
-    canales,
-    email:document.getElementById('f-email').value,
-    fecha:new Date().toISOString().split('T')[0]
+    nombre:    clean(document.getElementById('f-nombre').value),
+    industria: clean(document.getElementById('f-industria').value),
+    zona:      clean(document.getElementById('f-zona').value),
+    producto:  clean(document.getElementById('f-producto').value),
+    competidores: clean(document.getElementById('f-competidores').value),
+    tono:      clean(document.getElementById('f-tono').value),
+    voz:       clean(document.getElementById('f-voz').value),
+    evitar:    clean(document.getElementById('f-evitar').value),
+    usar:      clean(document.getElementById('f-usar').value),
+    cliente:   clean(document.getElementById('f-cliente').value),
+    dolores:   clean(document.getElementById('f-dolores').value),
+    objeciones:clean(document.getElementById('f-objeciones').value),
+    meta:      clean(document.getElementById('f-meta').value),
+    presupuesto: clean(document.getElementById('f-presupuesto').value),
+    canales:   clean(canales),
+    email:     (document.getElementById('f-email').value||'').trim(),
+    fecha:     new Date().toISOString().split('T')[0],
+    page_id:   '',
+    destination_url: 'https://ai-talos.com'
   };
 
   document.getElementById('ob-bcd').innerHTML =
