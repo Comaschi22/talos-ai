@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Talos AI — The Autonomous Guardian of Your Business</title>
-<meta name="description" content="Talos AI is a system of autonomous agents that manages your marketing, accounting, and operations — 24/7, without constant supervision. Not a tool. An executor.">
+<title>Talos AI — Your Managed AI Service Team</title>
+<meta name="description" content="Talos AI is a managed AI service that runs your marketing, finance, and operations for you — 24/7. We handle everything. You focus on your business.">
 <meta name="robots" content="index, follow">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Talos AI — The Autonomous Guardian of Your Business">
-<meta property="og:description" content="Stop paying $2,000/month to a marketing agency. Talos runs your ads, creates your content, and optimizes your budget — 24/7, autonomously.">
+<meta property="og:title" content="Talos AI — Your Managed AI Service Team">
+<meta property="og:description" content="Done-for-you AI marketing, finance, and operations management. Our team runs your ads, creates your content, and optimizes your budget — 24/7, for a fraction of agency cost.">
 <meta property="og:image" content="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80">
 <meta property="og:url" content="https://ai-talos.com">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Talos AI — The Autonomous Guardian of Your Business">
-<meta name="twitter:description" content="Stop paying $2,000/month to a marketing agency. Talos runs your ads, creates your content, and optimizes your budget — 24/7, autonomously.">
+<meta name="twitter:title" content="Talos AI — Your Managed AI Service Team">
+<meta name="twitter:description" content="Done-for-you AI marketing, finance, and operations management. We run your ads, create your content, and optimize your budget — 24/7, for a fraction of agency cost.">
 <meta name="twitter:image" content="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80">
 <meta name="theme-color" content="#060608">
 <link rel="icon" type="image/x-icon" href="./favicon.ico">
@@ -55,6 +55,91 @@ body::before{
   content:'';position:fixed;inset:0;z-index:1;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
   opacity:0.4;
+}
+
+/* ── CURSOR GLOW ── */
+.cursor-glow{
+  position:fixed;width:600px;height:600px;
+  border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,rgba(212,168,67,0.06) 0%,transparent 70%);
+  transform:translate(-50%,-50%);
+  transition:opacity 0.3s ease;
+  will-change:left,top;
+}
+
+/* ── HERO CANVAS ── */
+#hero-canvas{
+  position:absolute;inset:0;z-index:0;
+  width:100%;height:100%;
+  pointer-events:none;
+}
+
+/* ── 3D CARD TILT ── */
+.tilt-card{
+  transform-style:preserve-3d;
+  transition:transform 0.1s ease,box-shadow 0.3s ease;
+  will-change:transform;
+}
+.tilt-card:hover{
+  box-shadow:0 20px 60px rgba(212,168,67,0.08);
+}
+
+/* ── FLOATING ORBS ── */
+.orb{
+  position:absolute;border-radius:50%;
+  pointer-events:none;filter:blur(80px);
+  animation:orbFloat 8s ease-in-out infinite;
+  will-change:transform,opacity;
+}
+@keyframes orbFloat{
+  0%,100%{transform:translateY(0) scale(1);opacity:0.3}
+  33%{transform:translateY(-30px) scale(1.05);opacity:0.5}
+  66%{transform:translateY(20px) scale(0.95);opacity:0.2}
+}
+.orb-gold{background:radial-gradient(circle,rgba(212,168,67,0.4),transparent 70%);width:400px;height:400px}
+.orb-white{background:radial-gradient(circle,rgba(240,240,244,0.08),transparent 70%);width:300px;height:300px}
+
+/* ── SECTION FLOATING PARTICLES ── */
+.section-particles{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;
+}
+.sp{
+  position:absolute;border-radius:50%;
+  background:var(--gold);opacity:0;
+  animation:spFloat linear infinite;
+  will-change:transform,opacity;
+}
+@keyframes spFloat{
+  0%{transform:translateY(100%) translateX(0);opacity:0}
+  10%{opacity:0.4}
+  90%{opacity:0.1}
+  100%{transform:translateY(-100%) translateX(30px);opacity:0}
+}
+
+/* ── 3D SECTION ENTRANCE ── */
+.reveal-3d{
+  opacity:0;
+  transform:perspective(800px) rotateX(8deg) translateY(40px);
+  transition:opacity 0.8s ease,transform 0.8s ease;
+}
+.reveal-3d.visible{
+  opacity:1;
+  transform:perspective(800px) rotateX(0deg) translateY(0);
+}
+
+/* ── MAGNETIC BUTTON ── */
+.btn-magnetic{
+  transition:transform 0.2s cubic-bezier(0.23,1,0.32,1);
+  display:inline-flex;
+}
+
+/* ── SCROLL PROGRESS LINE ── */
+#scroll-progress{
+  position:fixed;top:0;left:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),var(--gold2));
+  z-index:200;width:0%;
+  transition:width 0.1s linear;
+  box-shadow:0 0 8px var(--gold-glow);
 }
 
 /* ── SCROLL ANIMATIONS ── */
@@ -1455,7 +1540,7 @@ footer{
   #faq{padding:80px 24px}
   #contacto{padding:80px 24px}
   #como-funciona{padding:80px 24px}
-  .como-steps{grid-template-columns:1fr}
+  .como-steps{grid-template-columns:1fr!important}
   #fundadores{padding:80px 24px}
   .fund-box{padding:36px 28px}
   .fund-grid{grid-template-columns:1fr}
@@ -1477,6 +1562,11 @@ footer{
 <a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:4px;z-index:9999;background:var(--gold);color:#000;padding:8px 16px;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none" onfocus="this.style.left='16px'" onblur="this.style.left='-9999px'">Skip to content</a>
 
 <!-- NAV -->
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+<!-- CURSOR GLOW -->
+<div class="cursor-glow" id="cursor-glow"></div>
+
 <nav>
   <a href="#hero" class="nav-logo">
     <!-- TALOS LOGO -->
@@ -1486,12 +1576,12 @@ footer{
   <ul class="nav-links">
     <li><a href="#problema" id="nav-problema">The Problem</a></li>
     <li><a href="#como-funciona" id="nav-como">How it works</a></li>
-    <li><a href="#modulos" id="nav-modulos">Modules</a></li>
+    <li><a href="#modulos" id="nav-modulos">Services</a></li>
     <li><a href="#planes" id="nav-planes">Pricing</a></li>
     <li><a href="#servicios" id="nav-servicios" class="nav-web-badge">Services</a></li>
     <li><a href="#faq" id="nav-faq">FAQ</a></li>
     <li><a href="#contacto" id="nav-contacto">Contact</a></li>
-    <li><a href="#fundadores" class="nav-cta" id="nav-cta">Get Started</a></li>
+    <li><a href="#contacto" class="nav-cta" id="nav-cta">Book a Free Call</a></li>
   </ul>
   <button class="nav-mobile-btn" id="nav-toggle" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -1512,28 +1602,31 @@ footer{
     <div class="ub-spot open"></div>
     <div class="ub-spot open"></div>
   </div>
-  <p id="ub-text"><strong>8 of 10 Founder spots remaining</strong> — Lock in $199/mo forever. Also: <a href="#servicios" style="color:var(--gold2);text-decoration:underline;text-decoration-style:dotted">Web design from $250 →</a></p>
-  <a href="#fundadores" class="ub-cta" id="ub-cta">Claim yours →</a>
+  <p id="ub-text"><strong>8 of 10 Founder slots remaining</strong> — Lock in Growth (3 agents) at $199/mo forever. Public price: $299. Also: <a href="#servicios" style="color:var(--gold2);text-decoration:underline;text-decoration-style:dotted">Web design from $250 →</a></p>
+  <a href="#contacto" class="ub-cta" id="ub-cta">Book your slot →</a>
 </div>
 
 <!-- ① HERO -->
 <section id="hero" style="padding:0" aria-label="Hero">
+  <canvas id="hero-canvas"></canvas>
   <div class="hero-bg-img"></div>
   <div class="hero-gradient"></div>
+  <div class="orb orb-gold" style="top:-100px;right:-100px;animation-delay:0s"></div>
+  <div class="orb orb-white" style="top:40%;left:-80px;animation-delay:3s"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">
       <div class="hero-eyebrow-dot"></div>
-      <span id="hero-tag">The Autonomous Guardian of Your Business</span>
+      <span id="hero-tag">Your Dedicated AI Marketing &amp; Operations Team</span>
     </div>
-    <h1 class="hero-h1" id="hero-h1">YOUR<br>BUSINESS<br>ON <span class="gold">AUTO<br>PILOT.</span></h1>
-    <p class="hero-sub" id="hero-sub">Talos AI is a system of autonomous agents that manages your marketing, accounting, and operations — 24/7, without constant supervision.</p>
-    <p class="hero-sub-es" id="hero-sub-es">Talos AI es un sistema de agentes autónomos que gestiona tu negocio — sin supervisión constante.</p>
+    <h1 class="hero-h1" id="hero-h1">WE RUN<br>YOUR<br><span class="gold">BUSINESS<br>FOR YOU.</span></h1>
+    <p class="hero-sub" id="hero-sub">Talos AI is a managed service where our team — powered by AI — runs your marketing, finance, and operations for you, 24/7. No tools to learn. No agency to manage. We handle it all.</p>
+    <p class="hero-sub-es" id="hero-sub-es">Talos AI es un servicio gestionado: nuestro equipo, potenciado por IA, trabaja para vos — sin que tengas que supervisar nada.</p>
     <div class="hero-actions">
-      <a href="#onboarding" class="btn-primary" id="hero-btn1">
-        Activate Talos
+      <a href="#contacto" class="btn-primary" id="hero-btn1">
+        Book a Free Strategy Call
         <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
       </a>
-      <a href="#modulos" class="btn-outline" id="hero-btn2">How it works</a>
+      <a href="#modulos" class="btn-outline" id="hero-btn2">See what we do</a>
       <a href="#servicios" class="btn-web-cta" id="hero-btn3">
         <span class="btn-web-dot"></span>
         Need a website?
@@ -1555,7 +1648,7 @@ footer{
   <div class="proof-divider"></div>
   <div class="proof-item">
     <div class="proof-num" id="proof2-num">15×</div>
-    <div class="proof-label" id="proof2-lbl">less than a marketing agency</div>
+    <div class="proof-label" id="proof2-lbl">less than a marketing agency — for the same results</div>
   </div>
   <div class="proof-divider"></div>
   <div class="proof-item">
@@ -1564,8 +1657,8 @@ footer{
   </div>
   <div class="proof-divider"></div>
   <div class="proof-item">
-    <div class="proof-num" id="proof4-num">$199</div>
-    <div class="proof-label" id="proof4-lbl">vs $3,000+ agency/month</div>
+    <div class="proof-num" id="proof4-num">$149</div>
+    <div class="proof-label" id="proof4-lbl">starting price vs $3,000+ agency/month</div>
   </div>
 </div>
 
@@ -1577,28 +1670,28 @@ footer{
       <h2 class="section-h2" id="prob-h2">YOU'RE PAYING<br>FOR <em>PEOPLE,</em><br>NOT RESULTS.</h2>
       <p class="section-h2-es" id="prob-sub">Estás pagando por personas, no por resultados.</p>
       <p class="problema-body" id="prob-b1">Small businesses spend between <em>$1,500 and $5,000/month</em> on marketing agencies — without knowing if they're working. Reports arrive late. Content is generic. Strategy shifts with every new account manager.</p>
-      <p class="problema-body" id="prob-b2">Talos is not an agency. It's not a tool. <em>It's an executor:</em> it learns your business, makes decisions, and acts — without being asked.</p>
+      <p class="problema-body" id="prob-b2">Talos is not a tool you configure. It's not software you log into. <em>It's a service we run for you:</em> our team learns your business, makes decisions, and acts every day — without you lifting a finger.</p>
     </div>
     <div class="pstats reveal-right">
-      <div class="pstat delay-1">
+      <div class="pstat delay-1 tilt-card">
         <div class="pstat-n">77%</div>
         <div class="pstat-copy">
           <strong id="pstat1-t">of SMBs say marketing is where AI would have the most impact.</strong>
           <span id="pstat1-s">Salesforce SMB Trends 2025</span>
         </div>
       </div>
-      <div class="pstat delay-2">
+      <div class="pstat delay-2 tilt-card">
         <div class="pstat-n">84%</div>
         <div class="pstat-copy">
           <strong id="pstat2-t">are willing to automate marketing content creation.</strong>
           <span id="pstat2-s">NSBA 2025</span>
         </div>
       </div>
-      <div class="pstat delay-3">
+      <div class="pstat delay-3 tilt-card">
         <div class="pstat-n">10×</div>
         <div class="pstat-copy">
           <strong id="pstat3-t">less than an agency, with full autonomy and real-time reporting.</strong>
-          <span id="pstat3-s">Talos SHIELD at $199/mo vs $2,000+ agency</span>
+          <span id="pstat3-s">Our managed service vs $2,000+ agency</span>
         </div>
       </div>
     </div>
@@ -1610,8 +1703,8 @@ footer{
   <div class="photo-break-img" id="pb1-img"></div>
   <div class="photo-break-overlay">
     <div class="photo-break-text">
-      <p id="quote1">"Stop paying $2,000/month to a marketing agency. Talos runs your ads, creates your content, and optimizes your budget — <em>24/7, autonomously.</em>"</p>
-      <small id="quote1-sub">— BEACON Module, Talos AI</small>
+      <p id="quote1">"Stop paying $2,000/month to a marketing agency. Let us run your ads, create your content, and optimize your budget for you — <em>24/7, hands-free.</em>"</p>
+      <small id="quote1-sub">— Talos AI Managed Service</small>
     </div>
   </div>
 </div>
@@ -1621,35 +1714,44 @@ footer{
   <div class="como-inner">
     <div class="como-header reveal">
       <div class="eyebrow" id="como-eyebrow" style="justify-content:center">How it works</div>
-      <h2 class="section-h2" id="como-h2" style="text-align:center">3 STEPS.<br><em>FULLY AUTOMATIC.</em></h2>
+      <h2 class="section-h2" id="como-h2" style="text-align:center">4 STEPS.<br><em>WE DO THE WORK.</em></h2>
     </div>
-    <div class="como-steps">
-      <div class="como-step reveal delay-1">
+    <div class="como-steps" style="grid-template-columns:repeat(4,1fr)">
+      <div class="como-step reveal delay-1 tilt-card">
         <div class="como-step-num">01</div>
         <div class="como-step-icon">
           <svg viewBox="0 0 20 20"><path d="M10 2a6 6 0 016 6c0 4-6 10-6 10S4 12 4 8a6 6 0 016-6z"/><circle cx="10" cy="8" r="2"/></svg>
         </div>
-        <h3 id="como1-h">Tell Talos about your business</h3>
-        <p id="como1-p">Complete the 15-minute onboarding form. Answer questions about your product, ideal client, brand voice, and goals. You do this once — Talos remembers everything forever.</p>
-        <span class="como-step-tag" id="como1-tag">~15 minutes · One time only</span>
+        <h3 id="como1-h">Book a free strategy call</h3>
+        <p id="como1-p">We learn about your business, goals, and current challenges. We recommend the right tier and agents for you. No commitment, no pressure.</p>
+        <span class="como-step-tag" id="como1-tag">30 min · Free · No commitment</span>
       </div>
-      <div class="como-step reveal delay-2">
+      <div class="como-step reveal delay-2 tilt-card">
         <div class="como-step-num">02</div>
         <div class="como-step-icon">
           <svg viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="1"/><path d="M7 10h6M10 7v6"/></svg>
         </div>
-        <h3 id="como2-h">Talos generates your first campaign</h3>
-        <p id="como2-p">Within minutes, BEACON analyzes your Business Context and generates 3 ready-to-publish ad campaigns. You receive them by email with step-by-step instructions — in your language.</p>
-        <span class="como-step-tag" id="como2-tag">~5 minutes · Fully autonomous</span>
+        <h3 id="como2-h">Complete your intake form</h3>
+        <p id="como2-p">15 minutes. Tell us about your product, ideal client, brand voice, channels, and goals. You do this once — we remember everything forever and build your Business Context profile.</p>
+        <span class="como-step-tag" id="como2-tag">~15 minutes · One time only</span>
       </div>
-      <div class="como-step reveal delay-3">
+      <div class="como-step reveal delay-3 tilt-card">
         <div class="como-step-num">03</div>
+        <div class="como-step-icon">
+          <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 3"/></svg>
+        </div>
+        <h3 id="como3-h">We run a dry-run first</h3>
+        <p id="como3-p">Before anything goes live, we show you exactly what your agent would have done against your last 30 days of data. You see every decision and why. You approve — then it goes live.</p>
+        <span class="como-step-tag" id="como3-tag">Full transparency · You approve first</span>
+      </div>
+      <div class="como-step reveal delay-4 tilt-card">
+        <div class="como-step-num">04</div>
         <div class="como-step-icon">
           <svg viewBox="0 0 20 20"><path d="M4 10l4 4 8-8"/></svg>
         </div>
-        <h3 id="como3-h">Publish and watch results come in</h3>
-        <p id="como3-p">Publish your chosen campaign to Meta Ads in minutes. Talos monitors performance, optimizes budget, and sends you weekly reports. You focus on your business — Talos handles the rest.</p>
-        <span class="como-step-tag" id="como3-tag">24/7 · No supervision needed</span>
+        <h3 id="como4-h">We run everything. You get results.</h3>
+        <p id="como4-p">Your agents run 24/7. Every action is logged. You get WhatsApp alerts when something important happens and a plain-language report every Monday morning.</p>
+        <span class="como-step-tag" id="como4-tag">24/7 · Zero management on your end</span>
       </div>
     </div>
   </div>
@@ -1660,50 +1762,115 @@ footer{
   <div class="modulos-inner">
     <div class="modulos-top">
       <div class="reveal-left">
-        <div class="eyebrow" id="mod-eyebrow">Modules</div>
-        <h2 class="section-h2" id="mod-h2">THE ARMOR<br>OF <em>TALOS.</em></h2>
+        <div class="eyebrow" id="mod-eyebrow">What We Do</div>
+        <h2 class="section-h2" id="mod-h2">THREE SERVICE<br><em>LINES.</em></h2>
       </div>
-      <p class="modulos-desc reveal-right" id="mod-desc">Three specialized modules that grow with your business. Start with BEACON and expand as you scale.</p>
+      <p class="modulos-desc reveal-right" id="mod-desc">Three managed service lines, each run by our team. Start with Presence and expand as your business grows.</p>
     </div>
     <div class="mods-grid">
-      <div class="mod reveal delay-1">
-        <div class="mod-phase" id="mod1-phase">Phase 1 — Available now</div>
-        <div class="mod-name">BEACON</div>
-        <div class="mod-sub" id="mod1-sub">Marketing & Sales</div>
-        <p class="mod-desc" id="mod1-desc">Autonomous content generation, intelligent budget allocation, and real-time campaign optimization — without human intervention.</p>
+      <div class="mod reveal delay-1 tilt-card">
+        <div class="mod-phase" id="mod1-phase">Available now</div>
+        <div class="mod-name">PRESENCE</div>
+        <div class="mod-sub" id="mod1-sub">Talos Presence — Marketing</div>
+        <p class="mod-desc" id="mod1-desc">We run your ads, generate your content, manage your budget, and optimize performance — 24/7. No marketing knowledge required. You just approve and see results.</p>
         <ul class="mod-feats" id="mod1-feats">
-          <li>Ad creative generation</li>
-          <li>Intelligent audience segmentation</li>
-          <li>Meta Ads + Instagram automation</li>
-          <li>Talos Meta-Marketing seal</li>
-          <li>Real-time performance dashboard</li>
+          <li>Autonomous Ad Manager (MVP)</li>
+          <li>Creative generation & fatigue detection</li>
+          <li>Meta Ads + Instagram + Google Ads</li>
+          <li>Budget reallocation in real-time</li>
+          <li>Weekly performance report (plain language)</li>
+          <li>WhatsApp alerts for every key action</li>
         </ul>
       </div>
-      <div class="mod coming reveal delay-2">
-        <div class="mod-phase" id="mod2-phase">Phase 2 — Coming soon</div>
-        <div class="mod-name">SENTRY</div>
-        <div class="mod-sub" id="mod2-sub">Finance & Metrics</div>
-        <p class="mod-desc" id="mod2-desc">Automatic income and expense classification, tax projections, and macro/micro control dashboards.</p>
+      <div class="mod reveal delay-2 tilt-card">
+        <div class="mod-phase" id="mod2-phase">Available now</div>
+        <div class="mod-name">CLARITY</div>
+        <div class="mod-sub" id="mod2-sub">Talos Clarity — Finance</div>
+        <p class="mod-desc" id="mod2-desc">We connect to your bank and accounting software, categorize every transaction, monitor your cash flow, and chase unpaid invoices — without you touching a spreadsheet.</p>
         <ul class="mod-feats" id="mod2-feats">
-          <li>Cash flow monitoring</li>
-          <li>Tax shield & projections</li>
-          <li>CEO + Operative dashboard</li>
+          <li>Cash Flow Monitor + runway projection</li>
+          <li>Invoice & collections automation</li>
+          <li>Automatic expense categorization</li>
+          <li>Tax exposure alerts</li>
+          <li>Weekly financial summary (plain language)</li>
+          <li>Connects via Plaid, QuickBooks, Xero, Stripe</li>
         </ul>
-        <span class="mod-soon" id="mod2-soon">// Roadmap Phase 2</span>
+        <span class="mod-soon" id="mod2-soon">// Talos Clarity</span>
       </div>
-      <div class="mod coming reveal delay-3">
-        <div class="mod-phase" id="mod3-phase">Phase 3 — Coming soon</div>
-        <div class="mod-name">ORACLE</div>
-        <div class="mod-sub" id="mod3-sub">Operations</div>
-        <p class="mod-desc" id="mod3-desc">Hybrid interaction agent that drafts emails, responds to inquiries, and manages operational workflows autonomously.</p>
+      <div class="mod coming reveal delay-3 tilt-card">
+        <div class="mod-phase" id="mod3-phase">Custom — always quoted</div>
+        <div class="mod-name">LEAD</div>
+        <div class="mod-sub" id="mod3-sub">Talos Lead — Business Management</div>
+        <p class="mod-desc" id="mod3-desc">Operations, internal processes, inbox management, task routing, automations — anything beyond marketing and finance. Every build is custom, scoped, and priced to your specific business.</p>
         <ul class="mod-feats" id="mod3-feats">
-          <li>Autonomous email drafting</li>
-          <li>Query response & routing</li>
-          <li>Human escalation for complex cases</li>
+          <li>Custom operational workflows</li>
+          <li>Inbox management & response drafting</li>
+          <li>Task routing & escalation logic</li>
+          <li>Process automation (any tool we support)</li>
+          <li>Discovery call → scoped quote → build</li>
         </ul>
-        <span class="mod-soon" id="mod3-soon">// Roadmap Phase 3</span>
+        <span class="mod-soon" id="mod3-soon">// Talos Lead — Custom · from $500/mo</span>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- WHAT WE DELIVER PER TIER -->
+<section id="deliverables" style="padding:80px 40px;background:var(--surface)">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="reveal" style="text-align:center;margin-bottom:56px">
+      <div class="eyebrow" style="justify-content:center">What you get</div>
+      <h2 class="section-h2" style="text-align:center">CONCRETE<br><em>DELIVERABLES.</em></h2>
+      <p style="font-size:14px;color:var(--muted);max-width:540px;margin:16px auto 0">Every plan. Every month. No surprises — you know exactly what we deliver before you pay.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px">
+
+      <!-- STARTER -->
+      <div class="tilt-card reveal delay-1" style="background:var(--bg);border:1px solid var(--border);padding:36px 28px">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px">$149/mo</div>
+        <div style="font-family:var(--display);font-size:20px;font-weight:700;margin-bottom:4px">STARTER</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:24px">1 agent of your choice</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:12px">
+          <li style="font-size:13px;color:var(--muted);display:flex;gap:10px"><span style="color:var(--gold);flex-shrink:0">→</span>1 autonomous agent running 24/7 (Presence or Clarity)</li>
+          <li style="font-size:13px;color:var(--muted);display:flex;gap:10px"><span style="color:var(--gold);flex-shrink:0">→</span>Weekly plain-language report every Monday</li>
+          <li style="font-size:13px;color:var(--muted);display:flex;gap:10px"><span style="color:var(--gold);flex-shrink:0">→</span>WhatsApp notifications for significant actions</li>
+          <li style="font-size:13px;color:var(--muted);display:flex;gap:10px"><span style="color:var(--gold);flex-shrink:0">→</span>Full action log — every decision explained</li>
+          <li style="font-size:13px;color:var(--muted);display:flex;gap:10px"><span style="color:var(--gold);flex-shrink:0">→</span>Dry-run review before going live</li>
+        </ul>
+      </div>
+
+      <!-- GROWTH -->
+      <div class="tilt-card reveal delay-2" style="background:var(--bg);border:1px solid var(--gold);padding:36px 28px;position:relative">
+        <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--gold);color:#000;font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:0.15em;padding:4px 12px">MOST POPULAR</div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px">$299/mo</div>
+        <div style="font-family:var(--display);font-size:20px;font-weight:700;margin-bottom:4px">GROWTH</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:24px">3 agents — mix any categories</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:12px">
+          <li style="font-size:13px;color:var(--muted);display:flex;gap:10px"><span style="color:var(--gold);flex-shrink:0">→</span>3 autonomous agents (Presence + Clarity — your mix)</li>
+          <li style="font-size:13px;color:var(--muted);display:flex;gap:10px"><span style="color:var(--gold);flex-shrink:0">→</span>Weekly reports + real-time performance dashboard</li>
+          <li style="font-size:13px;color:var(--muted);display:flex;gap:10px"><span style="color:var(--gold);flex-shrink:0">→</span>WhatsApp alerts + priority support</li>
+          <li style="font-size:13px;color:var(--muted);display:flex;gap:10px"><span style="color:var(--gold);flex-shrink:0">→</span>Full action log with Claude's reasoning</li>
+          <li style="font-size:13px;color:var(--muted);display:flex;gap:10px"><span style="color:var(--gold);flex-shrink:0">→</span>New agents deployed within 48hrs on request</li>
+          <li style="font-size:13px;color:var(--muted);display:flex;gap:10px"><span style="color:var(--gold);flex-shrink:0">→</span>Dry-run review before every agent goes live</li>
+        </ul>
+      </div>
+
+      <!-- SCALE -->
+      <div class="tilt-card reveal delay-3" style="background:var(--bg);border:1px solid var(--border);padding:36px 28px">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px">$499/mo</div>
+        <div style="font-family:var(--display);font-size:20px;font-weight:700;margin-bottom:4px">SCALE</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:24px">6 agents — full coverage</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:12px">
+          <li style="font-size:13px;color:var(--muted);display:flex;gap:10px"><span style="color:var(--gold);flex-shrink:0">→</span>6 autonomous agents — full Presence + Clarity coverage</li>
+          <li style="font-size:13px;color:var(--muted);display:flex;gap:10px"><span style="color:var(--gold);flex-shrink:0">→</span>Daily monitoring reports + real-time dashboard</li>
+          <li style="font-size:13px;color:var(--muted);display:flex;gap:10px"><span style="color:var(--gold);flex-shrink:0">→</span>Dedicated onboarding call</li>
+          <li style="font-size:13px;color:var(--muted);display:flex;gap:10px"><span style="color:var(--gold);flex-shrink:0">→</span>First access to every new agent before public launch</li>
+          <li style="font-size:13px;color:var(--muted);display:flex;gap:10px"><span style="color:var(--gold);flex-shrink:0">→</span>Fastest deployment SLA (24hrs)</li>
+          <li style="font-size:13px;color:var(--muted);display:flex;gap:10px"><span style="color:var(--gold);flex-shrink:0">→</span>All Growth deliverables included</li>
+        </ul>
+      </div>
+    </div>
+    <p class="reveal" style="text-align:center;font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:32px;letter-spacing:0.1em">ADDITIONAL AGENTS ABOVE YOUR TIER: $79/AGENT/MO · NO SETUP FEE · NO CONTRACTS · CANCEL ANYTIME</p>
   </div>
 </section>
 
@@ -1714,13 +1881,13 @@ footer{
       <!-- Left: copy -->
       <div class="beacon-demo-copy reveal-left">
         <div class="eyebrow">Live Preview</div>
-        <h2>BEACON IN<br><em>ACTION.</em></h2>
-        <p>This is what happens when you complete the onboarding form. BEACON reads your business context and generates 3 ready-to-publish ad campaigns — in minutes, autonomously, every week.</p>
+        <h2>WHAT WE BUILD<br><em>FOR YOU.</em></h2>
+        <p>This is what happens after you fill out our intake form. We analyze your business context and generate 3 ready-to-publish ad campaigns — in minutes, every week, without you writing a single line of copy.</p>
         <div class="beacon-stats">
-          <div class="bs-item">Campaign copy tailored to your brand voice and target customer</div>
-          <div class="bs-item">Three angles: Pain Point, Social Proof, Aspirational</div>
+          <div class="bs-item">Campaign copy tailored to your brand voice and target customer — written by our team</div>
+          <div class="bs-item">Three angles: Pain Point, Social Proof, Aspirational — you choose which to publish</div>
           <div class="bs-item">Adapted for Meta Ads, Instagram, and Google (formats vary per platform)</div>
-          <div class="bs-item">Delivered to your email — review and publish in one click</div>
+          <div class="bs-item">Delivered to your email — you approve, we publish</div>
         </div>
       </div>
       <!-- Right: terminal -->
@@ -1733,7 +1900,7 @@ footer{
               <span class="bt-dot bt-dot-y"></span>
               <span class="bt-dot bt-dot-g"></span>
             </div>
-            <span class="bt-label">BEACON · Campaign Generation</span>
+            <span class="bt-label">Talos Presence · Campaign Engine</span>
             <div class="bt-live">
               <span class="bt-live-dot"></span>
               <span class="bt-live-label">Live</span>
@@ -1764,45 +1931,46 @@ footer{
   </div>
 </section>
 
-<!-- ④ TESTIMONIOS -->
-<section id="testimonios" style="padding:80px 40px">
-  <div class="test-inner">
-    <div class="test-header reveal">
-      <div class="eyebrow" id="test-eyebrow" style="justify-content:center">Early Adopters</div>
-      <h2 class="section-h2" id="test-h2" style="text-align:center">WHAT THEY'RE<br><em>SAYING.</em></h2>
+<!-- SUPPORTED APPS -->
+<section id="apps" style="padding:60px 40px;border-top:1px solid var(--border)">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="reveal" style="text-align:center;margin-bottom:40px">
+      <div class="eyebrow" style="justify-content:center">Supported apps</div>
+      <h3 style="font-family:var(--display);font-size:clamp(18px,2.5vw,26px);font-weight:700;letter-spacing:0.02em">WORKS WITH THE TOOLS<br><em style="color:var(--gold);font-style:normal">YOUR BUSINESS ALREADY USES.</em></h3>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px">All apps below are fully supported — included in your monthly plan. Need something outside this list? We scope it as a custom integration.</p>
     </div>
-    <div class="test-grid">
-      <div class="test-card reveal delay-1">
-        <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-        <p class="test-quote" id="t1-q">"Talos generated our first 3 ad campaigns in minutes. We went from zero social media presence to 47 new leads in the first week."</p>
-        <div class="test-author">
-          <div class="test-avatar">MC</div>
-          <div>
-            <div class="test-name" id="t1-n">Maria C.</div>
-            <div class="test-role" id="t1-r">Aesthetic Clinic · Miami, FL</div>
-          </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:900px;margin:0 auto">
+      <div class="reveal delay-1" style="border:1px solid var(--border);padding:24px 20px">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:0.2em;margin-bottom:16px">TALOS PRESENCE</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:12px;color:var(--muted)">Meta Ads (Facebook + Instagram)</span>
+          <span style="font-size:12px;color:var(--muted)">Google Ads</span>
+          <span style="font-size:12px;color:var(--muted)">TikTok Ads</span>
+          <span style="font-size:12px;color:var(--muted)">WhatsApp Business</span>
+          <span style="font-size:12px;color:var(--muted)">Mailchimp / Klaviyo</span>
+          <span style="font-size:12px;color:var(--muted)">Google Business Profile</span>
         </div>
       </div>
-      <div class="test-card reveal delay-2">
-        <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-        <p class="test-quote" id="t2-q">"I was paying $2,400/month to an agency. With Talos I'm paying $199 and the content quality is actually better. The ROI is insane."</p>
-        <div class="test-author">
-          <div class="test-avatar">RL</div>
-          <div>
-            <div class="test-name" id="t2-n">Roberto L.</div>
-            <div class="test-role" id="t2-r">Restaurant · Buenos Aires</div>
-          </div>
+      <div class="reveal delay-2" style="border:1px solid var(--border);padding:24px 20px">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:0.2em;margin-bottom:16px">TALOS CLARITY</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:12px;color:var(--muted)">Plaid (bank connections)</span>
+          <span style="font-size:12px;color:var(--muted)">QuickBooks</span>
+          <span style="font-size:12px;color:var(--muted)">Xero</span>
+          <span style="font-size:12px;color:var(--muted)">Wave</span>
+          <span style="font-size:12px;color:var(--muted)">Stripe</span>
+          <span style="font-size:12px;color:var(--muted)">PayPal</span>
         </div>
       </div>
-      <div class="test-card reveal delay-3">
-        <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-        <p class="test-quote" id="t3-q">"The onboarding took 15 minutes. By morning I had 3 complete ad campaigns ready to publish. This is the future of marketing."</p>
-        <div class="test-author">
-          <div class="test-avatar">SP</div>
-          <div>
-            <div class="test-name" id="t3-n">Sarah P.</div>
-            <div class="test-role" id="t3-r">E-commerce · New York, NY</div>
-          </div>
+      <div class="reveal delay-3" style="border:1px solid var(--border);padding:24px 20px">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:0.2em;margin-bottom:16px">ALL SERVICES</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:12px;color:var(--muted)">Gmail</span>
+          <span style="font-size:12px;color:var(--muted)">Google Sheets</span>
+          <span style="font-size:12px;color:var(--muted)">Looker Studio (dashboards)</span>
+          <span style="font-size:12px;color:var(--muted)">Airtable</span>
+          <span style="font-size:12px;color:var(--muted)">WhatsApp Business</span>
+          <span style="font-size:12px;color:var(--muted)">Slack</span>
         </div>
       </div>
     </div>
@@ -1825,7 +1993,7 @@ footer{
   </div>
   <div class="garantia-text">
     <h3 id="gar-h">30-Day Money-Back Guarantee</h3>
-    <p id="gar-p">If Talos doesn't generate value for your business in the first 30 days, we refund 100% of your payment. No questions asked. We're confident in what we built.</p>
+    <p id="gar-p">If we don't generate measurable value for your business in the first 30 days, we refund 100% of your payment. No questions asked. We stand behind our service completely.</p>
   </div>
 </div>
 
@@ -1835,7 +2003,7 @@ footer{
     <div class="fund-box reveal">
       <div class="fund-eyebrow" id="fund-eyebrow">Founder Program</div>
       <h2 class="fund-h2" id="fund-h2">LOCK IN YOUR<br>PRICE <em>FOREVER.</em></h2>
-      <p class="fund-sub" id="fund-sub">The first 10 clients to activate Talos keep today's price for life — regardless of how many modules we launch. When SENTRY goes live, new clients pay $299/mo for SHIELD. You'll still pay $199.</p>
+      <p class="fund-sub" id="fund-sub">The first 10 clients get the Growth plan (3 agents) at <strong style="color:var(--gold)">$199/mo — locked forever.</strong> When we add more agents and capabilities, the price for new clients goes up to $299. Yours never moves.</p>
       <div class="fund-spots" id="fund-spots">
         <div class="fund-spot taken" title="Taken">✓</div>
         <div class="fund-spot taken" title="Taken">✓</div>
@@ -1848,44 +2016,44 @@ footer{
         <div class="fund-spot open">9</div>
         <div class="fund-spot open">10</div>
       </div>
-      <p class="fund-spots-label" id="fund-spots-label"><strong>2 of 10 spots taken.</strong> 8 remaining at founder pricing.</p>
+      <p class="fund-spots-label" id="fund-spots-label"><strong>2 of 10 founder slots taken.</strong> 8 remaining at $199/mo forever.</p>
       <div class="fund-grid">
         <div class="fund-benefit">
           <span class="fund-benefit-check">✓</span>
           <div class="fund-benefit-text">
-            <strong id="fb1-t">Price locked forever</strong>
-            <span id="fb1-s">SHIELD at $199/mo — never goes up, no matter how many modules launch.</span>
+            <strong id="fb1-t">$199/mo Growth plan — locked forever</strong>
+            <span id="fb1-s">3 agents, any category mix — never goes up, no matter how many agents we add or what the public price becomes.</span>
           </div>
         </div>
         <div class="fund-benefit">
           <span class="fund-benefit-check">✓</span>
           <div class="fund-benefit-text">
-            <strong id="fb2-t">Early access to SENTRY & ORACLE</strong>
-            <span id="fb2-s">Founders get priority access to every new module before public launch.</span>
+            <strong id="fb2-t">First access to every new agent</strong>
+            <span id="fb2-s">Founders get priority access to every new Presence and Clarity agent before public launch.</span>
           </div>
         </div>
         <div class="fund-benefit">
           <span class="fund-benefit-check">✓</span>
           <div class="fund-benefit-text">
-            <strong id="fb3-t">Direct line to the founders</strong>
-            <span id="fb3-s">Dedicated onboarding and direct access to the team building Talos.</span>
+            <strong id="fb3-t">Direct line to the team</strong>
+            <span id="fb3-s">Dedicated onboarding call and direct access to the team managing your account.</span>
           </div>
         </div>
         <div class="fund-benefit">
           <span class="fund-benefit-check">✓</span>
           <div class="fund-benefit-text">
-            <strong id="fb4-t">Shape the product</strong>
-            <span id="fb4-s">Your feedback directly influences what Talos builds next. Your business, your roadmap.</span>
+            <strong id="fb4-t">Shape the service</strong>
+            <span id="fb4-s">Your feedback directly influences what we build next. Your business, your roadmap.</span>
           </div>
         </div>
       </div>
       <div class="fund-actions">
-        <a href="#onboarding" class="btn-primary" id="fund-cta">
-          Claim your founder spot
+        <a href="#contacto" class="btn-primary" id="fund-cta">
+          Claim your founder slot
           <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
         </a>
         <div class="fund-next-price" id="fund-next">
-          Next price: <strong>$299/mo for SHIELD</strong><br>when SENTRY launches
+          Public price: <strong>$299/mo for Growth</strong><br>once founder slots are gone
         </div>
       </div>
     </div>
@@ -1898,60 +2066,60 @@ footer{
     <div class="planes-header reveal">
       <div class="eyebrow" id="planes-eyebrow">Pricing</div>
       <h2 class="section-h2" id="planes-h2">SIMPLE.<br><em>TRANSPARENT.</em></h2>
-      <p class="planes-note" id="planes-note">One agency costs $3,000/month. Talos costs $199 and does more.</p>
+      <p class="planes-note" id="planes-note">One agency costs $3,000/month. Our managed service starts at $149 with a real team behind every result.</p>
     </div>
     <div class="planes-grid">
-      <div class="plan reveal delay-1">
+      <div class="plan reveal delay-1 tilt-card">
         <div class="plan-tier" id="p1-tier">// Entry level</div>
-        <div class="plan-name">VISION</div>
-        <div class="plan-tagline" id="p1-tag">See everything.</div>
-        <div class="plan-price"><span class="plan-val">$79</span><span class="plan-period">/mo</span></div>
-        <div class="plan-save" id="p1-save">Save $1,421/mo vs agency · <span style="text-decoration:line-through;opacity:0.5">$129 after SENTRY</span></div>
+        <div class="plan-name">STARTER</div>
+        <div class="plan-tagline" id="p1-tag">We report. You decide.</div>
+        <div class="plan-price"><span class="plan-val">$149</span><span class="plan-period">/mo</span></div>
+        <div class="plan-save" id="p1-save">1 agent included · Add more at $79/agent</div>
         <hr class="plan-hr">
         <ul class="plan-feats" id="p1-feats">
-          <li>Full metrics dashboard</li>
-          <li>1 active channel</li>
-          <li>Weekly reports</li>
-          <li>BEACON read-only</li>
+          <li>1 agent of your choice</li>
+          <li>Presence or Clarity category</li>
+          <li>Weekly plain-language report</li>
+          <li>WhatsApp notifications</li>
         </ul>
-        <a href="#onboarding" class="plan-btn" id="p1-btn">Get started</a>
+        <a href="#contacto" class="plan-btn" id="p1-btn">Get started</a>
       </div>
-      <div class="plan featured reveal delay-2">
+      <div class="plan featured reveal delay-2 tilt-card">
         <div class="plan-tier" id="p2-tier">// Most popular</div>
-        <div class="plan-name">SHIELD</div>
-        <div class="plan-tagline" id="p2-tag">Collaborate with Talos.</div>
-        <div class="plan-price"><span class="plan-val">$199</span><span class="plan-period">/mo</span></div>
-        <div class="plan-save" id="p2-save">Save $2,801/mo vs agency · <span style="text-decoration:line-through;opacity:0.5">$299 after SENTRY</span></div>
+        <div class="plan-name">GROWTH</div>
+        <div class="plan-tagline" id="p2-tag">We run it. You approve.</div>
+        <div class="plan-price"><span class="plan-val">$299</span><span class="plan-period">/mo</span></div>
+        <div class="plan-save" id="p2-save">3 agents included · Mix any categories freely</div>
         <hr class="plan-hr">
         <ul class="plan-feats" id="p2-feats">
-          <li>Content generation + approval</li>
-          <li>3 active channels</li>
-          <li>Meta Ads + Instagram</li>
-          <li>Real-time dashboard</li>
+          <li>3 agents — any category</li>
+          <li>Presence + Clarity mix</li>
+          <li>Real-time performance dashboard</li>
+          <li>Weekly reports + WhatsApp alerts</li>
           <li>Priority support</li>
         </ul>
-        <a href="#onboarding" class="plan-btn" id="p2-btn">Activate SHIELD →</a>
+        <a href="#contacto" class="plan-btn" id="p2-btn">Activate Growth →</a>
       </div>
-      <div class="plan reveal delay-3">
-        <div class="plan-tier" id="p3-tier">// Full autonomy</div>
-        <div class="plan-name">TITAN</div>
-        <div class="plan-tagline" id="p3-tag">Talos runs everything.</div>
+      <div class="plan reveal delay-3 tilt-card">
+        <div class="plan-tier" id="p3-tier">// Full coverage</div>
+        <div class="plan-name">SCALE</div>
+        <div class="plan-tagline" id="p3-tag">We handle everything.</div>
         <div class="plan-price"><span class="plan-val">$499</span><span class="plan-period">/mo</span></div>
-        <div class="plan-save" id="p3-save">Save $4,501/mo vs agency · <span style="text-decoration:line-through;opacity:0.5">$699 after SENTRY</span></div>
+        <div class="plan-save" id="p3-save">6 agents included · Full Presence + Clarity coverage</div>
         <hr class="plan-hr">
         <ul class="plan-feats" id="p3-feats">
-          <li>Full 24/7 autonomy</li>
-          <li>Unlimited channels</li>
-          <li>All BEACON features</li>
-          <li>Early access to SENTRY</li>
-          <li>Dedicated onboarding</li>
+          <li>6 agents — any category</li>
+          <li>Full Presence + Clarity coverage</li>
+          <li>Daily monitoring & reports</li>
+          <li>Dedicated onboarding call</li>
+          <li>First to access new agents</li>
         </ul>
-        <a href="#onboarding" class="plan-btn" id="p3-btn">Get started</a>
+        <a href="#contacto" class="plan-btn" id="p3-btn">Get started</a>
       </div>
     </div>
     <p class="planes-footnote reveal" id="planes-bottom">
-      The golden rule: charge 10–20% of the value generated.<br>
-      <strong>A $3,000 agency → Talos SHIELD at $199/mo. Same results. 15× less.</strong>
+      Additional agents above your tier limit: <strong>$79/agent/month.</strong><br>
+      <strong>Talos Lead (Business Management) — always custom quoted. Book a call to discuss.</strong>
     </p>
   </div>
 </section>
@@ -2004,7 +2172,7 @@ footer{
           <span>// HTML delivery</span>
           <span class="serv-tag-badge">DIY-READY</span>
         </div>
-        <div class="serv-name" id="sw-name">TALOS<br>STARTER</div>
+        <div class="serv-name" id="sw-name">TALOS<br>WEB</div>
         <p class="serv-tagline" id="sw-tagline">You get the site. You publish it yourself. We walk you through every step.</p>
 
         <div class="serv-price-wrap">
@@ -2029,7 +2197,7 @@ footer{
           <li>1 design revision round</li>
         </ul>
         <a href="#contacto" class="serv-btn" id="sw-btn">
-          Get Starter
+          Get started
           <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
         </a>
       </div>
@@ -2141,23 +2309,31 @@ footer{
     <div class="faq-list reveal">
       <div class="faq-item">
         <button class="faq-q" id="fq1"><span>Do I need technical knowledge to use Talos?</span><div class="faq-icon"></div></button>
-        <div class="faq-a"><p id="fa1">No. The onboarding takes 15 minutes and is completely guided. You answer questions about your business — Talos handles all the technical work behind the scenes.</p></div>
+        <div class="faq-a"><p id="fa1">None at all. You fill out a 15-minute intake form once — that's it. Our team handles everything from there. No tools to learn, no dashboards to manage, no campaigns to set up. You review results and approve. We run everything else.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" id="fq2"><span>How is Talos different from ChatGPT or other AI tools?</span><div class="faq-icon"></div></button>
-        <div class="faq-a"><p id="fa2">ChatGPT is a tool — you ask, it answers. Talos is an executor. It learns your business context, generates content, and takes action autonomously without you needing to prompt it every time.</p></div>
+        <button class="faq-q" id="fq2"><span>How is Talos different from a marketing agency or ChatGPT?</span><div class="faq-icon"></div></button>
+        <div class="faq-a"><p id="fa2">A marketing agency costs $2,000-5,000/mo, works 9-5, and sends you reports two weeks late. ChatGPT is a tool — you prompt it, it responds, nothing happens automatically. Talos is a managed service: our team, powered by AI, runs your campaigns and monitors your finances 24/7 at a fraction of agency cost. You just see the results.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" id="fq3"><span>What channels does BEACON support right now?</span><div class="faq-icon"></div></button>
-        <div class="faq-a"><p id="fa3">BEACON currently generates optimized content for Meta Ads and Instagram. Google Ads, TikTok, and LinkedIn integrations are in active development for Phase 2.</p></div>
+        <button class="faq-q" id="fq3"><span>What channels does Talos Presence support right now?</span><div class="faq-icon"></div></button>
+        <div class="faq-a"><p id="fa3">Talos Presence currently manages Meta Ads and Instagram campaigns as the primary focus. Google Ads, TikTok, WhatsApp Business, Mailchimp, and Google Business Profile are in our supported stack and rolling out based on client demand.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" id="fq4"><span>Is my business data safe?</span><div class="faq-icon"></div></button>
-        <div class="faq-a"><p id="fa4">Absolutely. Each client has an isolated data silo — your information never mixes with other clients. We use end-to-end encryption and our AI models don't train on your sensitive data.</p></div>
+        <button class="faq-q" id="fq4"><span>What happens before my agent goes live?</span><div class="faq-icon"></div></button>
+        <div class="faq-a"><p id="fa4">We run a dry-run first. Before any agent touches your accounts, we analyze your last 30 days of historical data and show you exactly what the agent would have done — every decision, every action, every reason. You review it, ask questions, and approve. Only then does it go live. Full transparency, always.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" id="fq5"><span>Can I cancel anytime?</span><div class="faq-icon"></div></button>
-        <div class="faq-a"><p id="fa5">Yes. No contracts, no cancellation fees. Cancel anytime from your dashboard. We're confident you'll stay because of the results, not because you're locked in.</p></div>
+        <button class="faq-q" id="fq5"><span>Is my business data safe?</span><div class="faq-icon"></div></button>
+        <div class="faq-a"><p id="fa5">Yes. Each client has a fully isolated data silo. Your information never mixes with other clients. We use end-to-end encryption and your data is never used to train AI models. The only things that ever touch your data are the agents we deploy specifically for your account.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" id="fq6"><span>Can I cancel anytime?</span><div class="faq-icon"></div></button>
+        <div class="faq-a"><p id="fa6">Yes. No contracts, no cancellation fees. Email us anytime and we stop. We're confident you'll stay because of results — not because you're locked in.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" id="fq7"><span>What is Talos Lead and how is it priced?</span><div class="faq-icon"></div></button>
+        <div class="faq-a"><p id="fa7">Talos Lead is our Business Management service — operational workflows, inbox management, process automation, custom internal systems. Because every business operates differently, this is always scoped and quoted per project. Minimum engagement is $500/mo. Book a discovery call and we'll tell you exactly what we'd build for your specific situation.</p></div>
       </div>
     </div>
   </div>
@@ -2169,7 +2345,7 @@ footer{
     <div class="reveal-left">
       <div class="eyebrow" id="contact-eyebrow">Contact Us</div>
       <h2 id="contact-h2">LET'S<br><em>TALK.</em></h2>
-      <p id="contact-sub">Have questions before activating Talos? Want to discuss a custom plan for your business? We respond within 24 hours.</p>
+      <p id="contact-sub">Ready to hand off your marketing and operations? Tell us about your business and we'll put together a free strategy recommendation — no commitment required. We respond within 24 hours.</p>
       <div class="contact-detail">
         <div class="contact-detail-icon">
           <svg viewBox="0 0 14 14"><path d="M2 3h10v8H2z" stroke-width="1.2"/><path d="M2 3l5 5 5-5" stroke-width="1.2"/></svg>
@@ -2213,7 +2389,7 @@ footer{
       </form>
       <div class="contact-success" id="contact-success" aria-live="polite" role="status">
         <strong id="cs-title">Message received. ✓</strong><br>
-        <span id="cs-body">We'll get back to you within 24 hours. In the meantime, feel free to explore the onboarding form below.</span>
+        <span id="cs-body">We'll review your business details and get back to you within 24 hours with a free strategy recommendation.</span>
       </div>
     </div>
   </div>
@@ -2225,14 +2401,14 @@ footer{
     <div class="ob-hero-img"></div>
     <div class="ob-hero-overlay">
       <div class="ob-hero-text">
-        <h2 id="ob-h2">ACTIVATE <em>TALOS.</em></h2>
-        <p id="ob-sub">15 minutes. One time. Talos works forever.</p>
+        <h2 id="ob-h2">TELL US ABOUT<br><em>YOUR BUSINESS.</em></h2>
+        <p id="ob-sub">15 minutes. One time. This is all we need to build your Business Context and deploy your first agent.</p>
       </div>
     </div>
   </div>
   <div class="ob-wrap">
     <div class="ob-side">
-      <div class="ob-side-label" id="ob-side-label">// Onboarding steps</div>
+      <div class="ob-side-label" id="ob-side-label">// Client intake</div>
       <div class="ob-steps">
         <div class="ob-step active" id="onav-1">
           <span class="ob-step-n">01</span>
@@ -2258,7 +2434,7 @@ footer{
       <div class="ob-side-note" id="ob-side-note">
         YOUR DATA IS PRIVATE.<br>
         <strong>ENCRYPTED SILO.</strong><br>
-        ONLY TALOS USES IT.
+        ONLY OUR TEAM USES IT.
       </div>
     </div>
     <div class="ob-main">
@@ -2351,15 +2527,15 @@ footer{
               <label class="chip"><input type="checkbox" value="None yet"> None yet</label>
             </div>
           </div>
-          <div class="btn-row"><button type="button" class="btn-ghost-f" onclick="oGoTo(3)" id="btn-back4">← Back</button><button type="submit" class="btn-gold-f" id="btn-submit">Activate Talos →</button></div>
+          <div class="btn-row"><button type="button" class="btn-ghost-f" onclick="oGoTo(3)" id="btn-back4">← Back</button><button type="submit" class="btn-gold-f" id="btn-submit">Send my information →</button></div>
         </div>
       </form>
       <div class="ob-success" id="ob-success" aria-live="polite" role="status">
         <div class="ob-success-icon">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#d4a843" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 10 8 15 17 6"/></svg>
         </div>
-        <h3 id="success-h3">TALOS IS <em>ACTIVE.</em></h3>
-        <p id="success-p">Your business profile has been saved. Within 24 hours, Talos will generate your first campaign. Check your email.</p>
+        <h3 id="success-h3">SERVICE <em>ACTIVATED.</em></h3>
+        <p id="success-p">We've received your business information. Within 24 hours, our team will generate your first campaign. Check your email.</p>
         <div class="bcd-box">
           <div class="bcd-label">// Business Context Document — generated</div>
           <div class="bcd-content" id="ob-bcd"></div>
@@ -2379,7 +2555,7 @@ footer{
 <!-- META-MARKETING STRIP -->
 <div class="mm-strip">
   <div class="mm-pulse"></div>
-  <p id="mm-text"><strong>This page was built by an AI.</strong> The copy was written by an AI. The design was directed by an AI. The strategy behind it was defined by an AI. This is what Talos does for your business — every day, automatically.</p>
+  <p id="mm-text"><strong>This page was built by our team using AI.</strong> The copy was written by AI. The design was directed by AI. The strategy behind it was defined by AI. This is what we do for your business — every day, without you lifting a finger.</p>
   <div class="mm-pulse"></div>
 </div>
 
@@ -2392,7 +2568,7 @@ footer{
     <div class="ai-badge-dot"></div>
     <div class="ai-badge-text" id="ai-badge-text">Built by AI<br><strong>Claude API + Make.com</strong></div>
   </div>
-  <div class="footer-copy">© 2026 TALOS AI — The Autonomous Guardian of Your Business</div>
+  <div class="footer-copy">© 2026 TALOS AI — Your Managed AI Service Team</div>
 </footer>
 
 <script>
@@ -2485,32 +2661,25 @@ document.getElementById('ob-form').addEventListener('submit', function(e) {
   req.forEach(el => { el.classList.remove('error'); if(!el.value.trim()){ el.classList.add('error'); ok=false; } });
   if(!ok) return;
 
-  // Sanitize: remove characters that break JSON string interpolation in Make
-  function clean(v) {
-    return (v || '—').replace(/"/g, "'").replace(/\\/g, '').replace(/[\r\n\t]+/g, ' ').replace(/\s+/g, ' ').trim() || '—';
-  }
-
   const canales = [...document.querySelectorAll('#ob-chips input:checked')].map(c=>c.value).join(', ')||'—';
   const d = {
-    nombre:    clean(document.getElementById('f-nombre').value),
-    industria: clean(document.getElementById('f-industria').value),
-    zona:      clean(document.getElementById('f-zona').value),
-    producto:  clean(document.getElementById('f-producto').value),
-    competidores: clean(document.getElementById('f-competidores').value),
-    tono:      clean(document.getElementById('f-tono').value),
-    voz:       clean(document.getElementById('f-voz').value),
-    evitar:    clean(document.getElementById('f-evitar').value),
-    usar:      clean(document.getElementById('f-usar').value),
-    cliente:   clean(document.getElementById('f-cliente').value),
-    dolores:   clean(document.getElementById('f-dolores').value),
-    objeciones:clean(document.getElementById('f-objeciones').value),
-    meta:      clean(document.getElementById('f-meta').value),
-    presupuesto: clean(document.getElementById('f-presupuesto').value),
-    canales:   clean(canales),
-    email:     (document.getElementById('f-email').value||'').trim(),
-    fecha:     new Date().toISOString().split('T')[0],
-    page_id:   '',
-    destination_url: 'https://ai-talos.com'
+    nombre:document.getElementById('f-nombre').value,
+    industria:document.getElementById('f-industria').value,
+    zona:document.getElementById('f-zona').value,
+    producto:document.getElementById('f-producto').value,
+    competidores:document.getElementById('f-competidores').value||'—',
+    tono:document.getElementById('f-tono').value,
+    voz:document.getElementById('f-voz').value||'—',
+    evitar:document.getElementById('f-evitar').value||'—',
+    usar:document.getElementById('f-usar').value||'—',
+    cliente:document.getElementById('f-cliente').value,
+    dolores:document.getElementById('f-dolores').value,
+    objeciones:document.getElementById('f-objeciones').value||'—',
+    meta:document.getElementById('f-meta').value,
+    presupuesto:document.getElementById('f-presupuesto').value,
+    canales,
+    email:document.getElementById('f-email').value,
+    fecha:new Date().toISOString().split('T')[0]
   };
 
   document.getElementById('ob-bcd').innerHTML =
@@ -2558,40 +2727,40 @@ navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMen
 
 /* ── LANGUAGE DETECTION ── */
 const es = {
-  'nav-problema':'El Problema','nav-como':'Cómo funciona','nav-modulos':'Módulos','nav-planes':'Precios',
-  'nav-faq':'FAQ','nav-contacto':'Contacto','nav-cta':'Empezar','nav-servicios':'Servicios Web',
-  'hero-tag':'El Guardián Autónomo de tu Empresa',
-  'hero-h1':'TU<br>NEGOCIO<br>EN <span class="gold">PILOTO<br>AUTOMÁTICO.</span>',
-  'hero-sub':'Talos AI es un sistema de agentes autónomos que gestiona tu marketing, contabilidad y operaciones — 24/7, sin supervisión constante.',
-  'hero-sub-es':'Talos AI is your autonomous business guardian.',
-  'hero-btn1':'Activar Talos','hero-btn2':'Cómo funciona','hero-btn3':'¿Necesitás un sitio web?',
+  'nav-problema':'El Problema','nav-como':'Cómo funciona','nav-modulos':'Servicios','nav-planes':'Precios',
+  'nav-faq':'FAQ','nav-contacto':'Contacto','nav-cta':'Reservar Llamada','nav-servicios':'Servicios Web',
+  'hero-tag':'Tu Equipo de IA Gestionado',
+  'hero-h1':'GESTIONAMOS<br>TU<br><span class="gold">NEGOCIO<br>POR VOS.</span>',
+  'hero-sub':'Talos AI es un servicio gestionado donde nuestro equipo — potenciado por IA — maneja tu marketing, finanzas y operaciones por vos, 24/7. Sin herramientas que aprender. Nosotros nos encargamos de todo.',
+  'hero-sub-es':'Talos AI: tu equipo de IA gestionado — nosotros trabajamos, vos crecés.',
+  'hero-btn1':'Reservá tu Llamada Gratuita','hero-btn2':'Qué hacemos','hero-btn3':'¿Necesitás un sitio web?',
   'proof1-lbl':'de las PyMEs priorizan marketing con IA',
   'proof2-lbl':'menos que una agencia de marketing',
   'proof3-lbl':'operación autónoma',
-  'proof4-lbl':'vs $3,000+ agencia por mes',
+  'proof4-lbl':'precio inicial vs $3,000+ agencia por mes',
   'prob-eyebrow':'El Problema',
   'prob-h2':'ESTÁS PAGANDO<br>POR <em>PERSONAS,</em><br>NO RESULTADOS.',
   'prob-sub':'You\'re paying for people, not results.',
   'prob-b1':'Las PyMEs gastan entre <em>$1,500 y $5,000/mes</em> en agencias de marketing — sin saber si funcionan. Los reportes llegan tarde. El contenido es genérico. La estrategia cambia con cada nuevo account manager.',
-  'prob-b2':'Talos no es una agencia. No es una herramienta. <em>Es un ejecutor:</em> aprende tu negocio, toma decisiones y actúa — sin que nadie lo pida.',
+  'prob-b2':'Talos no es una herramienta que configurás. No es un software al que entrás. <em>Es un servicio que gestionamos para vos:</em> nuestro equipo aprende tu negocio, toma decisiones y actúa todos los días — sin que muevas un dedo.',
   'pstat1-t':'de las PyMEs dice que el marketing es donde la IA tendría más impacto.',
   'pstat1-s':'Salesforce SMB Trends 2025',
   'pstat2-t':'está dispuesto a automatizar la creación de contenido de marketing.',
   'pstat2-s':'NSBA 2025',
-  'pstat3-t':'menos que una agencia, con autonomía total y reportes en tiempo real.',
-  'pstat3-s':'Talos SHIELD a $199/mes vs agencia $2,000+',
-  'quote1':'"Dejá de pagar $2,000/mes a una agencia. Talos maneja tus ads, crea tu contenido y optimiza tu presupuesto — <em>24/7, de forma autónoma.</em>"',
-  'quote1-sub':'— Módulo BEACON, Talos AI',
-  'mod-eyebrow':'Módulos',
-  'mod-h2':'LA ARMADURA<br>DE <em>TALOS.</em>',
-  'mod-desc':'Tres módulos especializados que crecen con tu negocio. Empezá con BEACON y expandí a medida que escalás.',
-  'mod1-phase':'Fase 1 — Disponible ahora','mod1-sub':'Marketing y Ventas',
-  'mod1-desc':'Generación autónoma de contenido, asignación inteligente de presupuesto y optimización de campañas en tiempo real.',
-  'mod2-phase':'Fase 2 — Próximamente','mod2-sub':'Finanzas y Métricas',
-  'mod2-desc':'Clasificación automática de ingresos y gastos, proyecciones impositivas y dashboards de control.',
-  'mod3-phase':'Fase 3 — Próximamente','mod3-sub':'Operaciones',
-  'mod3-desc':'Agente híbrido que redacta correos, responde consultas y gestiona flujos operativos de forma autónoma.',
-  'mod2-soon':'// Roadmap Fase 2','mod3-soon':'// Roadmap Fase 3',
+  'pstat3-t':'menos que una agencia, con un equipo dedicado y reportes en tiempo real.',
+  'pstat3-s':'Nuestro servicio gestionado vs agencia $2,000+',
+  'quote1':'"Dejá de pagar $2,000/mes a una agencia. Dejanos manejar tus ads, crear tu contenido y optimizar tu presupuesto por vos — <em>24/7, sin que hagas nada.</em>"',
+  'quote1-sub':'— Talos AI Servicio Gestionado',
+  'mod-eyebrow':'Lo que hacemos',
+  'mod-h2':'TRES LÍNEAS<br>DE <em>SERVICIO.</em>',
+  'mod-desc':'Tres líneas de servicio gestionado, cada una ejecutada por nuestro equipo. Empezá con Presence y expandí a medida que crecés.',
+  'mod1-phase':'Disponible ahora','mod1-sub':'Talos Presence — Marketing',
+  'mod1-desc':'Nos encargamos de la creación de contenido, asignación de presupuesto y optimización de campañas por vos. Sin que necesites saber nada de marketing.',
+  'mod2-phase':'Disponible ahora','mod2-sub':'Talos Clarity — Finanzas',
+  'mod2-desc':'Clasificamos tus ingresos y gastos, proyectamos tus impuestos y te entregamos dashboards semanales — sin que toques una planilla.',
+  'mod3-phase':'Cotización personalizada','mod3-sub':'Talos Lead — Business Management',
+  'mod3-desc':'Monitoreamos tu bandeja, redactamos respuestas y gestionamos flujos operativos — transformando el caos de email en acciones organizadas, automáticamente.',
+  'mod2-soon':'// Talos Clarity','mod3-soon':'// Talos Lead — Custom',
   'test-eyebrow':'Primeros Usuarios',
   'test-h2':'LO QUE ESTÁN<br><em>DICIENDO.</em>',
   't1-q':'"Talos generó nuestras primeras 3 campañas en minutos. Pasamos de cero presencia en redes a 47 nuevos leads en la primera semana."',
@@ -2600,15 +2769,15 @@ const es = {
   't2-n':'Roberto L.','t2-r':'Restaurante · Buenos Aires',
   't3-q':'"El onboarding tardó 15 minutos. A la mañana tenía 3 campañas completas listas para publicar. Esto es el futuro del marketing."',
   't3-n':'Sarah P.','t3-r':'E-commerce · New York, NY',
-  'quote2':'TU EQUIPO <em>YA ESTÁ ACÁ.</em>','quote2-sub':'Talos trabaja mientras dormís.',
+  'quote2':'TU EQUIPO <em>YA ESTÁ ACÁ.</em>','quote2-sub':'Nuestro equipo trabaja mientras dormís.',
   'planes-eyebrow':'Precios',
   'planes-h2':'SIMPLE.<br><em>TRANSPARENTE.</em>',
-  'planes-note':'Una agencia cuesta $3,000/mes. Talos cuesta $199 y hace más.',
-  'p1-tier':'// Entrada','p1-tag':'Ver todo.','p1-save':'Ahorrás $1,421/mes vs agencia · <span style="text-decoration:line-through;opacity:0.5">$129 después de SENTRY</span>',
-  'p2-tier':'// Más popular','p2-tag':'Trabajá junto a Talos.','p2-save':'Ahorrás $2,801/mes vs agencia · <span style="text-decoration:line-through;opacity:0.5">$299 después de SENTRY</span>',
-  'p3-tier':'// Autonomía total','p3-tag':'Talos maneja todo.','p3-save':'Ahorrás $4,501/mes vs agencia · <span style="text-decoration:line-through;opacity:0.5">$699 después de SENTRY</span>',
-  'p1-btn':'Empezar','p2-btn':'Activar SHIELD →','p3-btn':'Empezar',
-  'planes-bottom':'La regla de oro: cobrar el 10–20% del valor generado.<br><strong>Una agencia $3,000 → Talos SHIELD a $199/mes. Mismos resultados. 15× menos.</strong>',
+  'planes-note':'Una agencia cuesta $3,000/mes. Nuestro servicio gestionado empieza en $149 con un equipo real detrás de cada resultado.',
+  'p1-tier':'// Entrada','p1-tag':'Nosotros reportamos. Vos decidís.','p1-save':'1 agente incluido · Más agentes a $79/agente',
+  'p2-tier':'// Más popular','p2-tag':'Nosotros lo ejecutamos. Vos aprobás.','p2-save':'3 agentes incluidos · Mix libre de categorías',
+  'p3-tier':'// Cobertura total','p3-tag':'Nosotros manejamos todo.','p3-save':'6 agentes incluidos · Cobertura total',
+  'p1-btn':'Empezar','p2-btn':'Activar Growth →','p3-btn':'Empezar',
+  'planes-bottom':'La regla de oro: cobrar el 10–20% del valor generado.<br><strong>Agentes adicionales sobre tu tier: $79/agente/mes. Talos Lead siempre se cotiza de forma personalizada.</strong>',
   'nav-servicios':'Servicios',
   'serv-eyebrow':'Servicios One-Time',
   'serv-h2':'NOSOTROS LO CONSTRUIMOS.<br><em>VOS LO LANZÁS.</em>',
@@ -2616,14 +2785,14 @@ const es = {
   'sw-name':'TALOS WEB',
   'sw-tagline':'Tu landing page profesional, construida y publicada por Talos AI. Lista en 72 horas.',
   'sw-disc-label':'Con plan activo',
-  'sw-save':'Ahorrás $300 cuando tenés un plan VISION, SHIELD o TITAN activo',
+  'sw-save':'Ahorrás $300 cuando tenés un plan activo',
   'sw-feats-list':['Landing page profesional diseñada por IA','Copy escrito por Talos basado en tu negocio','Mobile-first, completamente responsive','Bilingüe (EN + ES) con detección automática de idioma','Hosteada y publicada — lista para compartir','Formulario de onboarding conectado a tu Airtable'],
   'sw-btn':'Obtener Talos Web',
   'sfl-name':'TALOS FULL<br>LAUNCH',
   'sfl-tagline':'Nos encargamos de todo. Diseño, copy, hosteo, dominio y tu primera campaña autónoma. De cero a publicado en 5 días.',
   'sfl-disc-label':'Con plan activo',
-  'sfl-save':'Ahorrás $500 cuando tenés un plan VISION, SHIELD o TITAN activo',
-  'sfl-feats-list':['Todo lo de Talos Web','Configuración de dominio propio y hosteo incluido','Flujos de Make.com configurados','Primera campaña BEACON generada y lista','Automatización de email conectada y testeada','30 días de soporte post-lanzamiento','1 ronda de revisiones incluida'],
+  'sfl-save':'Ahorrás $500 cuando tenés un plan activo',
+  'sfl-feats-list':['Todo lo de Talos Web','Configuración de dominio propio y hosteo incluido','Flujos de Make.com configurados','Primera campaña Presence generada y lista','Automatización de email conectada y testeada','30 días de soporte post-lanzamiento','1 ronda de revisiones incluida'],
   'sfl-btn':'Obtener Talos Pro',
   'sp-name':'TALOS<br>PREMIUM',
   'sp-tagline':'Nos encargamos de absolutamente todo. Dominio, diseño, hosteo y publicación. Vos solo aprobás y salís en vivo.',
@@ -2636,19 +2805,19 @@ const es = {
   'serv-meta-label':'// Demo en vivo',
   'serv-meta-text':'La estás mirando. Esta página completa — el diseño, el copy, la estrategia, las automatizaciones — fue construida usando exactamente este servicio. De cero a publicada en una sesión. <strong>Esto es lo que construimos para vos.</strong>',
   'faq-h2':'¿PREGUNTAS?<br><em>RESPONDIDAS.</em>',
-  'fq1':'¿Necesito conocimientos técnicos para usar Talos?',
-  'fa1':'No. El onboarding tarda 15 minutos y está completamente guiado. Respondés preguntas sobre tu negocio — Talos hace todo el trabajo técnico en segundo plano.',
+  'fq1':'¿Necesito conocimientos técnicos para contratar Talos?',
+  'fa1':'Para nada. Completás un formulario de 15 minutos una sola vez, y nuestro equipo se encarga de todo lo demás. Nosotros hacemos todo el trabajo técnico — vos solo revisás resultados y aprobás campañas.',
   'fq2':'¿En qué se diferencia Talos de ChatGPT u otras herramientas de IA?',
-  'fa2':'ChatGPT es una herramienta — preguntás, responde. Talos es un ejecutor. Aprende el contexto de tu negocio, genera contenido y actúa de forma autónoma sin que tengas que pedirlo cada vez.',
-  'fq3':'¿Qué canales soporta BEACON ahora mismo?',
-  'fa3':'BEACON genera contenido optimizado para Meta Ads e Instagram. Las integraciones con Google Ads, TikTok y LinkedIn están en desarrollo activo para la Fase 2.',
-  'fq4':'¿Están seguros mis datos de negocio?',
-  'fa4':'Absolutamente. Cada cliente tiene un silo de datos aislado — tu información nunca se mezcla con otros clientes. Usamos cifrado de extremo a extremo.',
+  'fa2':'ChatGPT es una herramienta — preguntás, responde. Talos es un servicio gestionado — usamos IA para manejar tu marketing y operaciones por vos, sin que tengas que hacer nada. Es la diferencia entre un software y un equipo dedicado.',
+  'fq3':'¿Qué canales gestiona Talos Presence ahora mismo?',
+  'fa3':'Talos Presence gestiona Meta Ads e Instagram ahora mismo. Google Ads, TikTok y LinkedIn están en desarrollo activo y se van agregando a los clientes próximamente.',
+  'fq4':'¿Qué pasa antes de que mi agente entre en vivo?',
+  'fa4':'Hacemos un dry-run primero. Antes de que cualquier agente toque tus cuentas, te mostramos exactamente qué habría hecho contra tus últimos 30 días. Vos aprobás — recién entonces va en vivo.',
   'fq5':'¿Puedo cancelar cuando quiero?',
-  'fa5':'Sí. Sin contratos, sin cargos por cancelación. Cancelá cuando quieras desde tu dashboard. Confiamos en que te vas a quedar por los resultados, no porque estés atrapado.',
+  'fa5':'Sí. Sin contratos, sin cargos por cancelación. Cancelá cuando quieras escribiéndonos. Confiamos en que te vas a quedar por los resultados, no porque estés atrapado.',
   'contact-eyebrow':'Contacto',
   'contact-h2':'HABLEMOS.',
-  'contact-sub':'¿Tenés preguntas antes de activar Talos? ¿Querés hablar de un plan personalizado? Respondemos en menos de 24 horas.',
+  'contact-sub':'¿Listo para delegar tu marketing y operaciones? Contanos sobre tu negocio y te armamos una recomendación estratégica gratuita — sin compromisos. Respondemos en menos de 24 horas.',
   'contact-email':'help@ai-talos.com',
   'contact-response':'Respondemos en menos de 24 horas',
   'contact-hours':'Lun – Vie, 9am – 6pm EST',
@@ -2656,12 +2825,12 @@ const es = {
   'cf-name-lbl':'Tu nombre','cf-email-lbl':'Email','cf-biz-lbl':'Nombre del negocio','cf-msg-lbl':'Mensaje',
   'cf-btn':'Enviar mensaje →',
   'cs-title':'Mensaje recibido. ✓',
-  'cs-body':'Te respondemos en menos de 24 horas. Mientras tanto, podés explorar el formulario de onboarding de abajo.',
-  'ob-h2':'ACTIVÁ <em>TALOS.</em>',
-  'ob-sub':'15 minutos. Una sola vez. Talos trabaja para siempre.',
-  'ob-side-label':'// Pasos del onboarding',
+  'cs-body':'Revisamos los detalles de tu negocio y te respondemos en menos de 24 horas con una recomendación estratégica gratuita.',
+  'ob-h2':'EMPEZÁ TU <em>SERVICIO.</em>',
+  'ob-sub':'15 minutos. Una sola vez. Nosotros nos encargamos.',
+  'ob-side-label':'// Intake del cliente',
   'ostep1':'Identidad','ostep2':'Voz de marca','ostep3':'Cliente ideal','ostep4':'Objetivos',
-  'ob-side-note':'TUS DATOS SON PRIVADOS.<br><strong>SILO CIFRADO.</strong><br>SOLO TALOS LOS USA.',
+  'ob-side-note':'TUS DATOS SON PRIVADOS.<br><strong>SILO CIFRADO.</strong><br>SOLO NUESTRO EQUIPO LOS USA.',
   'f1-ey':'Paso 01 — Identidad','f1-title':'¿QUIÉN SOS<br>Y QUÉ HACÉS?','f1-sub':'Who are you and what do you do?',
   'fl-nombre':'Nombre del negocio','fl-industria':'Industria','fl-zona':'Zona geográfica',
   'fl-producto':'Producto o servicio principal','fl-comp':'Competidores principales',
@@ -2674,46 +2843,48 @@ const es = {
   'fl-meta':'Meta del mes','fl-pres':'Presupuesto mensual en ads','fl-email':'Email de contacto','fl-canales':'Canales activos o a activar',
   'btn-next1':'Continuar →','btn-next2':'Continuar →','btn-next3':'Continuar →',
   'btn-back2':'← Atrás','btn-back3':'← Atrás','btn-back4':'← Atrás',
-  'btn-submit':'Activar Talos →',
-  'success-h3':'TALOS ESTÁ <em>ACTIVO.</em>',
-  'success-p':'El perfil de tu negocio fue guardado. En 24 horas Talos va a generar tu primera campaña. Revisá tu email.',
-  'mm-text':'<strong>Esta página fue construida por una IA.</strong> El copy lo escribió una IA. El diseño lo dirigió una IA. La estrategia la definió una IA. Esto es lo que Talos hace por tu negocio — todos los días, automáticamente.',
-  'ai-badge-text':'Construido por IA<br><strong>Claude API + Make.com</strong>',
-  'ub-text':'<strong>Quedan 8 de 10 lugares fundadores</strong> — Bloqueá $199/mes para siempre. El precio sube a $299 cuando lancemos SENTRY.',
-  'ub-cta':'Reservá el tuyo →',
+  'btn-submit':'Enviar mi información →',
+  'success-h3':'SERVICIO <em>ACTIVADO.</em>',
+  'success-p':'Recibimos la información de tu negocio. En 24 horas nuestro equipo va a generar tu primera campaña. Revisá tu email.',
+  'mm-text':'<strong>Esta página fue construida por nuestro equipo con IA.</strong> El copy lo escribió una IA. El diseño lo dirigió una IA. La estrategia la definió una IA. Esto es lo que hacemos por tu negocio — todos los días, sin que vos tengas que hacer nada.',
+  'ub-text':'<strong>Quedan 8 de 10 slots de servicio fundadores</strong> — Bloqueá el precio Growth para siempre. Sube a medida que agregamos más agentes.',
+  'ub-cta':'Reservá tu slot →',
   'como-eyebrow':'Cómo funciona',
-  'como-h2':'3 PASOS.<br><em>COMPLETAMENTE AUTOMÁTICO.</em>',
-  'como1-h':'Contale a Talos sobre tu negocio',
-  'como1-p':'Completá el formulario de onboarding de 15 minutos. Lo hacés una sola vez — Talos recuerda todo para siempre.',
-  'como1-tag':'~15 minutos · Una sola vez',
-  'como2-h':'Talos genera tu primera campaña',
-  'como2-p':'En minutos, BEACON genera 3 campañas listas para publicar. Las recibís por email con instrucciones paso a paso — en tu idioma.',
-  'como2-tag':'~5 minutos · Completamente autónomo',
-  'como3-h':'Publicá y mirá llegar los resultados',
-  'como3-p':'Publicá en Meta Ads en minutos. Talos monitorea el rendimiento, optimiza el presupuesto y te manda reportes semanales. Vos te enfocás en tu negocio.',
-  'como3-tag':'24/7 · Sin supervisión necesaria',
+  'como-h2':'4 PASOS.<br><em>NOSOTROS HACEMOS EL TRABAJO.</em>',
+  'como1-h':'Reservá una llamada gratuita de estrategia',
+  'como1-p':'Conocemos tu negocio, objetivos y desafíos. Te recomendamos el tier y los agentes correctos. Sin compromiso, sin presión.',
+  'como1-tag':'30 min · Gratis · Sin compromiso',
+  'como2-h':'Completá tu formulario de intake',
+  'como2-p':'15 minutos. Una sola vez. Contanos tu producto, cliente ideal, voz de marca y objetivos. Lo hacés una vez — construimos tu perfil de contexto de negocio para siempre.',
+  'como2-tag':'~15 minutos · Una sola vez',
+  'como3-h':'Hacemos un dry-run primero',
+  'como3-p':'Antes de que cualquier agente esté en vivo, te mostramos exactamente qué habría hecho contra tus últimos 30 días de datos. Ves cada decisión y el porqué. Vos aprobás — recién entonces va en vivo.',
+  'como3-tag':'Transparencia total · Vos aprobás primero',
+  'como4-h':'Nosotros lo manejamos todo. Vos ves resultados.',
+  'como4-p':'Tus agentes corren 24/7. Cada acción queda logueada. Recibís alertas por WhatsApp cuando pasa algo importante y un reporte en lenguaje simple cada lunes.',
+  'como4-tag':'24/7 · Cero gestión de tu parte',
   'gar-h':'Garantía de devolución de 30 días',
-  'gar-p':'Si Talos no genera valor para tu negocio en los primeros 30 días, te devolvemos el 100% del pago. Sin preguntas. Confiamos en lo que construimos.',
+  'gar-p':'Si no generamos valor medible para tu negocio en los primeros 30 días, te devolvemos el 100% del pago. Sin preguntas. Apostamos totalmente por nuestro servicio.',
   'fund-eyebrow':'Programa Fundador',
   'fund-h2':'BLOQUEÁ TU<br>PRECIO <em>PARA SIEMPRE.</em>',
-  'fund-sub':'Los primeros 10 clientes mantienen el precio de hoy de por vida. Cuando SENTRY salga, los nuevos clientes pagan $299/mes. Vos seguís pagando $199.',
-  'fund-spots-label':'<strong>2 de 10 lugares tomados.</strong> Quedan 8 al precio fundador.',
+  'fund-sub':'Los primeros 10 clientes obtienen el plan Growth (3 agentes) a $199/mes bloqueado para siempre. Cuando agreguemos más agentes y capacidades, el precio para nuevos clientes sube a $299. El tuyo nunca cambia.',
+  'fund-spots-label':'<strong>2 de 10 slots fundadores tomados.</strong> Quedan 8 a $199/mes para siempre.',
   'fb1-t':'Precio bloqueado para siempre',
-  'fb1-s':'SHIELD a $199/mes — nunca sube, sin importar cuántos módulos lancemos.',
-  'fb2-t':'Acceso anticipado a SENTRY y ORACLE',
-  'fb2-s':'Los fundadores obtienen acceso prioritario a cada módulo antes del lanzamiento público.',
-  'fb3-t':'Línea directa con los fundadores',
-  'fb3-s':'Onboarding dedicado y acceso directo al equipo que construye Talos.',
-  'fb4-t':'Influenciás el producto',
+  'fb1-s':'3 agentes, cualquier mix de categorías — nunca sube, sin importar cuántos agentes agreguemos o cuál sea el precio público.',
+  'fb2-t':'Primero en acceder a cada nuevo agente',
+  'fb2-s':'Los fundadores obtienen acceso prioritario a cada nuevo agente de Presence y Clarity antes del lanzamiento público.',
+  'fb3-t':'Línea directa con el equipo',
+  'fb3-s':'Llamada de onboarding dedicada y acceso directo al equipo que gestiona tu cuenta.',
+  'fb4-t':'Influenciás el servicio',
   'fb4-s':'Tu feedback influye directamente en lo que Talos construye después.',
-  'fund-cta':'Reclamá tu lugar fundador',
-  'fund-next':'Próximo precio: <strong>$299/mes por SHIELD</strong><br>cuando lance SENTRY',
+  'fund-cta':'Reclamá tu slot fundador',
+  'fund-next':'Precio público: <strong>$299/mes por Growth</strong><br>cuando se agoten los slots fundadores',
   'mod1-feats':['Generación de creatividades para anuncios','Segmentación inteligente de audiencias','Automatización Meta Ads + Instagram','Sello de Meta-Marketing Talos','Dashboard de performance en tiempo real'],
   'mod2-feats':['Vigilancia de flujo de caja','Escudo fiscal y proyecciones','Dashboard CEO + Operativo'],
   'mod3-feats':['Redacción autónoma de emails','Respuesta a consultas y routing','Escalamiento humano para casos complejos'],
-  'p1-feats':['Dashboard de métricas completo','1 canal activo','Reportes semanales','Acceso BEACON solo lectura'],
-  'p2-feats':['Generación de contenido + aprobación','3 canales activos','Meta Ads + Instagram','Dashboard en tiempo real','Soporte prioritario'],
-  'p3-feats':['Autonomía total 24/7','Canales ilimitados','Todas las funciones BEACON','Acceso anticipado a SENTRY','Onboarding dedicado'],
+  'p1-feats':['1 agente a tu elección','Presence o Clarity','Reporte semanal en lenguaje simple','Notificaciones WhatsApp'],
+  'p2-feats':['3 agentes — cualquier categoría','Mix Presence + Clarity libre','Dashboard de performance en tiempo real','Reportes semanales + alertas WhatsApp','Soporte prioritario'],
+  'p3-feats':['6 agentes — cualquier categoría','Cobertura total Presence + Clarity','Monitoreo y reportes diarios','Llamada de onboarding dedicada','Primero en acceder a nuevos agentes'],
 };
 
 function applyLang(lang) {
@@ -2831,6 +3002,301 @@ function btAnimate(){
   }
 }
 setTimeout(btAnimate,1200);
+
+/* ══════════════════════════════════════════
+   3D ANIMATION SYSTEM — TALOS AI
+   Inspired by activetheory.net
+   ══════════════════════════════════════════ */
+
+/* ── SCROLL PROGRESS ── */
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, (scrolled / maxScroll) * 100);
+  const bar = document.getElementById('scroll-progress');
+  if(bar) bar.style.width = pct + '%';
+}, {passive:true});
+
+/* ── CURSOR GLOW ── */
+const cursorGlow = document.getElementById('cursor-glow');
+let mouseX = window.innerWidth/2, mouseY = window.innerHeight/2;
+let glowX = mouseX, glowY = mouseY;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function animateGlow() {
+  glowX += (mouseX - glowX) * 0.06;
+  glowY += (mouseY - glowY) * 0.06;
+  if(cursorGlow) {
+    cursorGlow.style.left = glowX + 'px';
+    cursorGlow.style.top = glowY + 'px';
+  }
+  requestAnimationFrame(animateGlow);
+}
+animateGlow();
+
+/* ── HERO 3D PARTICLE SYSTEM ── */
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  let W, H, CX, CY;
+  const PARTICLE_COUNT = 180;
+  const GOLD = [212, 168, 67];
+  const WHITE = [240, 240, 244];
+
+  // Perspective camera
+  let camX = 0, camY = 0, camZ = 0;
+  let targetCamX = 0, targetCamY = 0;
+  let rotation = 0;
+
+  // Particles
+  const particles = [];
+
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+    CX = W / 2;
+    CY = H / 2;
+  }
+
+  function createParticle() {
+    const r = 300 + Math.random() * 400;
+    const theta = Math.random() * Math.PI * 2;
+    const phi = (Math.random() - 0.5) * Math.PI;
+    return {
+      // Spherical distribution
+      ox: r * Math.cos(phi) * Math.cos(theta),
+      oy: r * Math.cos(phi) * Math.sin(theta),
+      oz: r * Math.sin(phi),
+      x: 0, y: 0, // projected
+      size: 0.8 + Math.random() * 2.2,
+      speed: 0.0002 + Math.random() * 0.0004,
+      offset: Math.random() * Math.PI * 2,
+      isGold: Math.random() < 0.35,
+      opacity: 0.2 + Math.random() * 0.6,
+      // Independent drift
+      driftX: (Math.random() - 0.5) * 0.3,
+      driftY: (Math.random() - 0.5) * 0.3,
+      driftZ: (Math.random() - 0.5) * 0.3,
+      angle: Math.random() * Math.PI * 2,
+    };
+  }
+
+  function initParticles() {
+    particles.length = 0;
+    for(let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push(createParticle());
+    }
+  }
+
+  function project(x, y, z, fov) {
+    const fovFactor = fov / (fov + z);
+    return {
+      x: CX + x * fovFactor + camX * 0.5,
+      y: CY + y * fovFactor + camY * 0.5,
+      scale: Math.max(0.01, fovFactor)
+    };
+  }
+
+  let frame = 0;
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    frame++;
+
+    // Smoothly follow mouse with camera
+    targetCamX = (mouseX - W/2) * 0.08;
+    targetCamY = (mouseY - H/2) * 0.05;
+    camX += (targetCamX - camX) * 0.03;
+    camY += (targetCamY - camY) * 0.03;
+
+    rotation += 0.0008;
+
+    const FOV = 700;
+    const projectedParticles = [];
+
+    for(let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.angle += p.speed;
+
+      // Rotate around Y axis
+      const cosR = Math.cos(rotation);
+      const sinR = Math.sin(rotation);
+      const rx = p.ox * cosR - p.oz * sinR;
+      const rz = p.ox * sinR + p.oz * cosR;
+      const ry = p.oy + Math.sin(p.angle + p.offset) * 20;
+
+      // Add drift
+      const dx = rx + Math.sin(p.angle * 0.7 + p.offset) * 15 * p.driftX;
+      const dy = ry + Math.cos(p.angle * 0.5 + p.offset) * 15 * p.driftY;
+      const dz = rz + Math.sin(p.angle * 0.3 + p.offset) * 15 * p.driftZ;
+
+      if(dz + FOV <= 0) continue;
+
+      const proj = project(dx, dy, dz, FOV);
+      p.px = proj.x;
+      p.py = proj.y;
+      p.pscale = proj.scale;
+      p.pz = dz;
+      projectedParticles.push(p);
+    }
+
+    // Sort back-to-front
+    projectedParticles.sort((a, b) => b.pz - a.pz);
+
+    // Draw connections
+    const MAX_DIST = 120;
+    ctx.lineWidth = 0.4;
+    for(let i = 0; i < projectedParticles.length; i++) {
+      const a = projectedParticles[i];
+      for(let j = i + 1; j < projectedParticles.length; j++) {
+        const b = projectedParticles[j];
+        const dx = a.px - b.px;
+        const dy = a.py - b.py;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < MAX_DIST) {
+          const alpha = (1 - dist/MAX_DIST) * 0.12 * Math.min(a.pscale, b.pscale) * 2;
+          if(a.isGold || b.isGold) {
+            ctx.strokeStyle = `rgba(${GOLD[0]},${GOLD[1]},${GOLD[2]},${alpha})`;
+          } else {
+            ctx.strokeStyle = `rgba(${WHITE[0]},${WHITE[1]},${WHITE[2]},${alpha * 0.5})`;
+          }
+          ctx.beginPath();
+          ctx.moveTo(a.px, a.py);
+          ctx.lineTo(b.px, b.py);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw particles
+    for(let i = 0; i < projectedParticles.length; i++) {
+      const p = projectedParticles[i];
+      const depthAlpha = Math.max(0, Math.min(1, (p.pz + 400) / 800));
+      const finalAlpha = p.opacity * depthAlpha * p.pscale * 1.5;
+      const finalSize = p.size * p.pscale * 1.5;
+
+      if(finalAlpha <= 0.01) continue;
+
+      const col = p.isGold ? GOLD : WHITE;
+
+      // Glow for gold particles
+      if(p.isGold && finalAlpha > 0.3) {
+        const grad = ctx.createRadialGradient(p.px, p.py, 0, p.px, p.py, finalSize * 4);
+        grad.addColorStop(0, `rgba(${col[0]},${col[1]},${col[2]},${finalAlpha * 0.3})`);
+        grad.addColorStop(1, `rgba(${col[0]},${col[1]},${col[2]},0)`);
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(p.px, p.py, finalSize * 4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Core dot
+      ctx.fillStyle = `rgba(${col[0]},${col[1]},${col[2]},${Math.min(1, finalAlpha)})`;
+      ctx.beginPath();
+      ctx.arc(p.px, p.py, Math.max(0.3, finalSize), 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize, {passive:true});
+  resize();
+  initParticles();
+  draw();
+})();
+
+/* ── 3D CARD TILT ── */
+document.querySelectorAll('.tilt-card').forEach(card => {
+  let rafId;
+  card.addEventListener('mousemove', e => {
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(() => {
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = (e.clientX - cx) / (rect.width / 2);
+      const dy = (e.clientY - cy) / (rect.height / 2);
+      const rotX = -dy * 6;
+      const rotY = dx * 6;
+      card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(8px)`;
+    });
+  });
+  card.addEventListener('mouseleave', () => {
+    cancelAnimationFrame(rafId);
+    card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+    card.style.transition = 'transform 0.5s cubic-bezier(0.23,1,0.32,1)';
+    setTimeout(() => { card.style.transition = ''; }, 500);
+  });
+});
+
+/* ── MAGNETIC BUTTONS ── */
+document.querySelectorAll('.btn-primary, .btn-magnetic').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const rect = btn.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = (e.clientX - cx) * 0.25;
+    const dy = (e.clientY - cy) * 0.25;
+    btn.style.transform = `translate(${dx}px, ${dy}px)`;
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = 'translate(0,0)';
+    btn.style.transition = 'transform 0.4s cubic-bezier(0.23,1,0.32,1)';
+    setTimeout(() => { btn.style.transition = ''; }, 400);
+  });
+});
+
+/* ── SECTION FLOATING PARTICLES ── */
+(function() {
+  const sections = document.querySelectorAll('section');
+  sections.forEach((sec, idx) => {
+    if(idx % 3 !== 0) return; // Only every 3rd section
+    const container = document.createElement('div');
+    container.className = 'section-particles';
+    sec.style.position = sec.style.position || 'relative';
+    sec.appendChild(container);
+
+    const count = 6 + Math.floor(Math.random() * 6);
+    for(let i = 0; i < count; i++) {
+      const sp = document.createElement('div');
+      sp.className = 'sp';
+      const size = 2 + Math.random() * 4;
+      sp.style.cssText = `
+        width:${size}px;height:${size}px;
+        left:${Math.random()*100}%;
+        bottom:${Math.random()*100}%;
+        animation-duration:${8 + Math.random()*12}s;
+        animation-delay:${Math.random()*8}s;
+      `;
+      container.appendChild(sp);
+    }
+  });
+})();
+
+/* ── ENHANCED REVEAL — 3D entrance on scroll ── */
+const reveal3dObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.classList.add('visible');
+      reveal3dObserver.unobserve(e.target);
+    }
+  });
+}, {threshold:0.1});
+document.querySelectorAll('.reveal-3d').forEach(el => reveal3dObserver.observe(el));
+
+/* ── HERO PARALLAX on scroll ── */
+window.addEventListener('scroll', () => {
+  const heroCanvas = document.getElementById('hero-canvas');
+  if(heroCanvas && window.scrollY < window.innerHeight) {
+    heroCanvas.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+  }
+}, {passive:true});
 </script>
 </body>
 </html>
