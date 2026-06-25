@@ -23,7 +23,7 @@
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Instrument+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}}
@@ -38,7 +38,7 @@
   --gold-dim:rgba(212,168,67,0.12);
   --gold-glow:rgba(212,168,67,0.25);
   --display:'Unbounded',sans-serif;
-  --sans:'Instrument Sans',sans-serif;
+  --sans:'Plus Jakarta Sans',sans-serif;
   --mono:'DM Mono',monospace;
   --radius:2px;
 }
@@ -1556,6 +1556,111 @@ footer{
   .btn-row{flex-direction:column;gap:10px}
   .btn-row>*{width:100%;text-align:center}
 }
+
+/* ── CTA GLOW PULSE ── */
+@keyframes ctaPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(212,168,67,0)}
+  50%{box-shadow:0 0 28px 2px rgba(212,168,67,0.22),0 4px 24px rgba(212,168,67,0.12)}
+}
+.btn-primary{animation:ctaPulse 3.5s ease-in-out infinite}
+
+/* ── TICKER ── */
+.ticker-wrap{
+  overflow:hidden;padding:13px 0;
+  background:var(--surface);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  position:relative;z-index:2;
+}
+.ticker-wrap::before,.ticker-wrap::after{
+  content:'';position:absolute;top:0;bottom:0;width:100px;z-index:1;pointer-events:none;
+}
+.ticker-wrap::before{left:0;background:linear-gradient(to right,var(--surface),transparent)}
+.ticker-wrap::after{right:0;background:linear-gradient(to left,var(--surface),transparent)}
+.ticker-track{display:flex;width:max-content;animation:tickerScroll 30s linear infinite}
+.ticker-item{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.18em;
+  color:var(--muted);text-transform:uppercase;
+  padding:0 24px;white-space:nowrap;display:flex;align-items:center;gap:24px;
+}
+.ticker-dot{width:3px;height:3px;border-radius:50%;background:var(--gold);flex-shrink:0;opacity:0.45}
+@keyframes tickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── HERO AURORA ── */
+.hero-aurora{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 15% 60%,rgba(212,168,67,0.09) 0%,transparent 55%),
+    radial-gradient(ellipse at 85% 25%,rgba(240,240,244,0.03) 0%,transparent 45%),
+    radial-gradient(ellipse at 55% 85%,rgba(212,168,67,0.05) 0%,transparent 40%);
+  animation:auroraShift 14s ease-in-out infinite alternate;
+}
+@keyframes auroraShift{
+  0%{opacity:0.6;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.04)}
+  100%{opacity:0.75;transform:scale(1.01)}
+}
+
+/* ── ENHANCED MOD CARD HOVER ── */
+.mod{transition:border-color 0.3s,transform 0.2s,box-shadow 0.3s}
+.mod:hover{
+  border-color:rgba(212,168,67,0.2)!important;
+  box-shadow:0 0 48px rgba(212,168,67,0.06),0 20px 52px rgba(0,0,0,0.4);
+}
+
+/* ── STAGGER CHILDREN ── */
+.como-steps .como-step{transition:opacity 0.6s ease,transform 0.6s ease}
+
+/* ── BOOKING CARD ── */
+.booking-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-top:2px solid var(--gold);
+  padding:44px 40px;
+}
+.booking-what{display:flex;flex-direction:column;gap:14px;margin-bottom:36px}
+.booking-what-item{
+  display:flex;align-items:flex-start;gap:14px;
+  font-size:13px;font-weight:300;color:var(--muted);line-height:1.55;
+}
+.booking-check{
+  color:var(--gold);flex-shrink:0;
+  font-family:var(--mono);font-size:11px;margin-top:1px;
+}
+.booking-divider{
+  border:none;border-top:1px solid var(--border);margin:32px 0;
+}
+.booking-fallback{
+  text-align:center;font-size:11px;font-weight:300;
+  color:rgba(240,240,244,0.3);margin-top:16px;
+}
+.booking-fallback a{color:var(--gold);text-decoration:none}
+.booking-fallback a:hover{color:var(--gold2)}
+.booking-cta{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--gold);color:#000;
+  font-family:var(--sans);font-size:12px;font-weight:600;
+  letter-spacing:0.1em;text-transform:uppercase;
+  padding:18px 36px;width:100%;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:background 0.2s;border-radius:var(--radius);
+  animation:ctaPulse 3.5s ease-in-out infinite;
+}
+.booking-cta:hover{background:var(--gold2)}
+.booking-cta svg{width:14px;height:14px;transition:transform 0.2s}
+.booking-cta:hover svg{transform:translateX(3px)}
+.booking-meta{
+  display:flex;gap:24px;margin-bottom:36px;flex-wrap:wrap;
+}
+.booking-meta-item{
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:9px;letter-spacing:0.12em;
+  color:var(--muted);text-transform:uppercase;
+}
+.booking-meta-dot{
+  width:5px;height:5px;border-radius:50%;background:var(--gold);
+  animation:pulse 2s ease-in-out infinite;flex-shrink:0;
+}
 </style>
 </head>
 <body>
@@ -1578,10 +1683,8 @@ footer{
     <li><a href="#como-funciona" id="nav-como">How it works</a></li>
     <li><a href="#modulos" id="nav-modulos">Services</a></li>
     <li><a href="#planes" id="nav-planes">Pricing</a></li>
-    <li><a href="#servicios" id="nav-servicios" class="nav-web-badge">Services</a></li>
     <li><a href="#faq" id="nav-faq">FAQ</a></li>
-    <li><a href="#contacto" id="nav-contacto">Contact</a></li>
-    <li><a href="#contacto" class="nav-cta" id="nav-cta">Book a Free Call</a></li>
+    <li><a href="https://calendly.com/talosaico/free-ai-audit-30-min" target="_blank" class="nav-cta" id="nav-cta">Free Audit →</a></li>
   </ul>
   <button class="nav-mobile-btn" id="nav-toggle" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -1602,8 +1705,8 @@ footer{
     <div class="ub-spot open"></div>
     <div class="ub-spot open"></div>
   </div>
-  <p id="ub-text"><strong>8 of 10 Founder slots remaining</strong> — Lock in Growth (3 agents) at $199/mo forever. Public price: $299. Also: <a href="#servicios" style="color:var(--gold2);text-decoration:underline;text-decoration-style:dotted">Web design from $250 →</a></p>
-  <a href="#contacto" class="ub-cta" id="ub-cta">Book your slot →</a>
+  <p id="ub-text"><strong>8 of 10 Founder slots remaining</strong> — Lock in Growth at $199/mo forever. Public price: $299/mo.</p>
+  <a href="https://calendly.com/talosaico/free-ai-audit-30-min" target="_blank" class="ub-cta" id="ub-cta">Book free audit →</a>
 </div>
 
 <!-- ① HERO -->
@@ -1611,6 +1714,7 @@ footer{
   <canvas id="hero-canvas"></canvas>
   <div class="hero-bg-img"></div>
   <div class="hero-gradient"></div>
+  <div class="hero-aurora"></div>
   <div class="orb orb-gold" style="top:-100px;right:-100px;animation-delay:0s"></div>
   <div class="orb orb-white" style="top:40%;left:-80px;animation-delay:3s"></div>
   <div class="hero-content">
@@ -1622,15 +1726,11 @@ footer{
     <p class="hero-sub" id="hero-sub">Talos AI is a managed service where our team — powered by AI — runs your marketing, finance, and operations for you, 24/7. No tools to learn. No agency to manage. We handle it all.</p>
     <p class="hero-sub-es" id="hero-sub-es">Talos AI es un servicio gestionado: nuestro equipo, potenciado por IA, trabaja para vos — sin que tengas que supervisar nada.</p>
     <div class="hero-actions">
-      <a href="#contacto" class="btn-primary" id="hero-btn1">
-        Email Us — Get a Free Recommendation
+      <a href="https://calendly.com/talosaico/free-ai-audit-30-min" target="_blank" class="btn-primary" id="hero-btn1">
+        Book a Free AI Audit — 30 min
         <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
       </a>
       <a href="#modulos" class="btn-outline" id="hero-btn2">See what we do</a>
-      <a href="#servicios" class="btn-web-cta" id="hero-btn3">
-        <span class="btn-web-dot"></span>
-        Need a website?
-      </a>
     </div>
   </div>
   <div class="scroll-indicator">
@@ -1647,7 +1747,7 @@ footer{
   </div>
   <div class="proof-divider"></div>
   <div class="proof-item">
-    <div class="proof-num" id="proof2-num">15×</div>
+    <div class="proof-num" id="proof2-num">5×</div>
     <div class="proof-label" id="proof2-lbl">less than a marketing agency — for the same results</div>
   </div>
   <div class="proof-divider"></div>
@@ -1662,6 +1762,14 @@ footer{
   </div>
 </div>
 
+<!-- TICKER -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <div class="ticker-item">META ADS<span class="ticker-dot"></span>GOOGLE ADS<span class="ticker-dot"></span>INSTAGRAM<span class="ticker-dot"></span>WHATSAPP<span class="ticker-dot"></span>STRIPE<span class="ticker-dot"></span>QUICKBOOKS<span class="ticker-dot"></span>XERO<span class="ticker-dot"></span>MAKE.COM<span class="ticker-dot"></span>AIRTABLE<span class="ticker-dot"></span>CLAUDE AI<span class="ticker-dot"></span>PLAID<span class="ticker-dot"></span>GOOGLE SHEETS<span class="ticker-dot"></span></div>
+    <div class="ticker-item">META ADS<span class="ticker-dot"></span>GOOGLE ADS<span class="ticker-dot"></span>INSTAGRAM<span class="ticker-dot"></span>WHATSAPP<span class="ticker-dot"></span>STRIPE<span class="ticker-dot"></span>QUICKBOOKS<span class="ticker-dot"></span>XERO<span class="ticker-dot"></span>MAKE.COM<span class="ticker-dot"></span>AIRTABLE<span class="ticker-dot"></span>CLAUDE AI<span class="ticker-dot"></span>PLAID<span class="ticker-dot"></span>GOOGLE SHEETS<span class="ticker-dot"></span></div>
+  </div>
+</div>
+
 <!-- ② PROBLEMA -->
 <section id="problema">
   <div class="problema-wrap">
@@ -1669,7 +1777,7 @@ footer{
       <div class="eyebrow" id="prob-eyebrow">The Problem</div>
       <h2 class="section-h2" id="prob-h2">YOU'RE PAYING<br>FOR <em>PEOPLE,</em><br>NOT RESULTS.</h2>
       <p class="section-h2-es" id="prob-sub">Estás pagando por personas, no por resultados.</p>
-      <p class="problema-body" id="prob-b1">Small businesses spend between <em>$1,500 and $5,000/month</em> on marketing agencies — without knowing if they're working. Reports arrive late. Content is generic. Strategy shifts with every new account manager.</p>
+      <p class="problema-body" id="prob-b1">Small businesses spend between <em>$2,000 and $5,000/month</em> on marketing agencies — without knowing if they're working. Reports arrive late. Content is generic. Strategy shifts with every new account manager.</p>
       <p class="problema-body" id="prob-b2">Talos is not a tool you configure. It's not software you log into. <em>It's a service we run for you:</em> our team learns your business, makes decisions, and acts every day — without you lifting a finger.</p>
     </div>
     <div class="pstats reveal-right">
@@ -1688,10 +1796,10 @@ footer{
         </div>
       </div>
       <div class="pstat delay-3 tilt-card">
-        <div class="pstat-n">10×</div>
+        <div class="pstat-n">5×</div>
         <div class="pstat-copy">
           <strong id="pstat3-t">less than an agency, with full autonomy and real-time reporting.</strong>
-          <span id="pstat3-s">Our managed service vs $2,000+ agency</span>
+          <span id="pstat3-s">Our managed service vs $3,000+ agency/month</span>
         </div>
       </div>
     </div>
@@ -1703,7 +1811,7 @@ footer{
   <div class="photo-break-img" id="pb1-img"></div>
   <div class="photo-break-overlay">
     <div class="photo-break-text">
-      <p id="quote1">"Stop paying $2,000/month to a marketing agency. Let us run your ads, create your content, and optimize your budget for you — <em>24/7, hands-free.</em>"</p>
+      <p id="quote1">"Stop paying $3,000/month to a marketing agency. Get a 30-minute audit — we'll show you exactly how much you're leaving on the table, <em>for free.</em>"</p>
       <small id="quote1-sub">— Talos AI Managed Service</small>
     </div>
   </div>
@@ -1720,20 +1828,20 @@ footer{
       <div class="como-step reveal delay-1 tilt-card">
         <div class="como-step-num">01</div>
         <div class="como-step-icon">
-          <svg viewBox="0 0 20 20"><path d="M10 2a6 6 0 016 6c0 4-6 10-6 10S4 12 4 8a6 6 0 016-6z"/><circle cx="10" cy="8" r="2"/></svg>
+          <svg viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="13" rx="1"/><path d="M7 2v4M13 2v4M3 9h14"/></svg>
         </div>
-        <h3 id="como1-h">Email us</h3>
-        <p id="como1-p">Send us one email — your business name, what you do, and your biggest pain point. We reply within 24 hours with a specific recommendation. No calls required.</p>
-        <span class="como-step-tag" id="como1-tag">Email · 24hr reply · Free</span>
+        <h3 id="como1-h">Book a free audit</h3>
+        <p id="como1-p">30 minutes. We analyze your business, identify 3 areas where AI can cut your workload and grow your revenue — and show you exactly what that looks like for your specific operation. Zero commitment.</p>
+        <span class="como-step-tag" id="como1-tag">Free · 30 minutes · No commitment</span>
       </div>
       <div class="como-step reveal delay-2 tilt-card">
         <div class="como-step-num">02</div>
         <div class="como-step-icon">
-          <svg viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="1"/><path d="M7 10h6M10 7v6"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M4 4h12v10H4z"/><path d="M8 8h4M8 11h2"/></svg>
         </div>
-        <h3 id="como2-h">Complete your intake form</h3>
-        <p id="como2-p">15 minutes. Tell us about your product, ideal client, brand voice, channels, and goals. You do this once — we remember everything forever and build your Business Context profile.</p>
-        <span class="como-step-tag" id="como2-tag">~15 minutes · One time only</span>
+        <h3 id="como2-h">You get a 1-page proposal</h3>
+        <p id="como2-p">Within 48 hours, we send you a specific proposal: what we'll manage, the results you can expect in 30/60/90 days, and the exact price. One page. No surprises. You decide at your own pace.</p>
+        <span class="como-step-tag" id="como2-tag">Email · 48hr delivery · Specific to you</span>
       </div>
       <div class="como-step reveal delay-3 tilt-card">
         <div class="como-step-num">03</div>
@@ -1741,7 +1849,7 @@ footer{
           <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 3"/></svg>
         </div>
         <h3 id="como3-h">We run a dry-run first</h3>
-        <p id="como3-p">Before anything goes live, we show you exactly what your agent would have done against your last 30 days of data. You see every decision and why. You approve — then it goes live.</p>
+        <p id="como3-p">Before anything goes live, we show you exactly what your AI team would have done against your last 30 days of data. You see every decision and why. You approve — then it goes live. Full control, always.</p>
         <span class="como-step-tag" id="como3-tag">Full transparency · You approve first</span>
       </div>
       <div class="como-step reveal delay-4 tilt-card">
@@ -1750,7 +1858,7 @@ footer{
           <svg viewBox="0 0 20 20"><path d="M4 10l4 4 8-8"/></svg>
         </div>
         <h3 id="como4-h">We run everything. You get results.</h3>
-        <p id="como4-p">Your agents run 24/7. Every action is logged. You get WhatsApp alerts when something important happens and a plain-language report every Monday morning.</p>
+        <p id="como4-p">Your AI team runs 24/7. Every action is logged. You get WhatsApp alerts when something important happens and a plain-language report every Monday morning.</p>
         <span class="como-step-tag" id="como4-tag">24/7 · Zero management on your end</span>
       </div>
     </div>
@@ -2048,7 +2156,7 @@ footer{
         </div>
       </div>
       <div class="fund-actions">
-        <a href="#contacto" class="btn-primary" id="fund-cta">
+        <a href="https://calendly.com/talosaico/free-ai-audit-30-min" target="_blank" class="btn-primary" id="fund-cta">
           Claim your founder slot
           <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
         </a>
@@ -2066,7 +2174,7 @@ footer{
     <div class="planes-header reveal">
       <div class="eyebrow" id="planes-eyebrow">Pricing</div>
       <h2 class="section-h2" id="planes-h2">SIMPLE.<br><em>TRANSPARENT.</em></h2>
-      <p class="planes-note" id="planes-note">One agency costs $3,000/month. Our managed service starts at $149 with a real team behind every result.</p>
+      <p class="planes-note" id="planes-note">One agency costs $3,000/month. Our managed service starts at $149 with a real AI team behind every result.</p>
     </div>
     <div class="planes-grid">
       <div class="plan reveal delay-1 tilt-card">
@@ -2082,7 +2190,7 @@ footer{
           <li>Weekly plain-language report</li>
           <li>WhatsApp notifications</li>
         </ul>
-        <a href="#contacto" class="plan-btn" id="p1-btn">Get started</a>
+        <a href="https://calendly.com/talosaico/free-ai-audit-30-min" target="_blank" class="plan-btn" id="p1-btn">Get started</a>
       </div>
       <div class="plan featured reveal delay-2 tilt-card">
         <div class="plan-tier" id="p2-tier">// Most popular</div>
@@ -2098,7 +2206,7 @@ footer{
           <li>Weekly reports + WhatsApp alerts</li>
           <li>Priority support</li>
         </ul>
-        <a href="#contacto" class="plan-btn" id="p2-btn">Activate Growth →</a>
+        <a href="https://calendly.com/talosaico/free-ai-audit-30-min" target="_blank" class="plan-btn" id="p2-btn">Activate Growth →</a>
       </div>
       <div class="plan reveal delay-3 tilt-card">
         <div class="plan-tier" id="p3-tier">// Full coverage</div>
@@ -2114,188 +2222,13 @@ footer{
           <li>Dedicated onboarding (email + async)</li>
           <li>First to access new agents</li>
         </ul>
-        <a href="#contacto" class="plan-btn" id="p3-btn">Get started</a>
+        <a href="https://calendly.com/talosaico/free-ai-audit-30-min" target="_blank" class="plan-btn" id="p3-btn">Get started</a>
       </div>
     </div>
     <p class="planes-footnote reveal" id="planes-bottom">
       Additional agents above your tier limit: <strong>$79/agent/month.</strong><br>
-      <strong>Talos Lead (Business Management) — always custom quoted. Book a call to discuss.</strong>
+      <strong>No setup fee · No contracts · Cancel anytime.</strong>
     </p>
-  </div>
-</section>
-
-<!-- ── WEB DESIGN BRIDGE ── -->
-<div class="web-bridge" id="web-bridge-strip">
-  <div class="web-bridge-inner">
-    <div class="web-bridge-left">
-      <div class="web-bridge-eyebrow">
-        <span class="web-bridge-dot"></span>
-        New · One-Time Service
-      </div>
-      <p class="web-bridge-headline">No website yet?<br><em>We build it for you.</em></p>
-      <p class="web-bridge-sub">Professional design, bilingual copy, domain & hosting — live in 7 days. From $250.</p>
-    </div>
-    <div class="web-bridge-right">
-      <div class="web-bridge-tags">
-        <span class="web-bridge-tag">From&nbsp;<strong>$250</strong></span>
-        <span class="web-bridge-tag">Live in&nbsp;<strong>7 days</strong></span>
-        <span class="web-bridge-tag web-bridge-tag-hot">🔥&nbsp;Launch&nbsp;Week&nbsp;Pricing</span>
-      </div>
-      <a href="#servicios" class="web-bridge-cta">
-        See web design plans
-        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- SERVICIOS ONE-TIME -->
-<section id="servicios">
-  <div class="servicios-inner">
-    <div class="servicios-header reveal">
-      <div class="eyebrow" id="serv-eyebrow">One-Time Services</div>
-      <h2 class="section-h2" id="serv-h2">WE BUILD IT.<br><em>YOU LAUNCH IT.</em></h2>
-      <p id="serv-sub">No website yet? Need a professional digital presence fast? We design everything — or hand you the files so you publish it yourself. Three tiers, one goal: your business online and generating leads.</p>
-      <div class="serv-launch-bar reveal">
-        <span class="serv-launch-fire">🔥</span>
-        <span id="serv-launch-copy">Launch Week pricing ends soon — prices go up permanently after this window.</span>
-        <a href="#contacto" class="serv-launch-link" id="serv-launch-cta">Lock in your price →</a>
-      </div>
-    </div>
-
-    <div class="servicios-grid">
-
-      <!-- TALOS STARTER -->
-      <div class="serv-card reveal delay-1">
-        <div class="serv-launch">Launch Price</div>
-        <div class="serv-tag">
-          <span>// HTML delivery</span>
-          <span class="serv-tag-badge">DIY-READY</span>
-        </div>
-        <div class="serv-name" id="sw-name">TALOS<br>WEB</div>
-        <p class="serv-tagline" id="sw-tagline">You get the site. You publish it yourself. We walk you through every step.</p>
-
-        <div class="serv-price-wrap">
-          <div class="serv-price">
-            <div>
-              <div class="serv-price-orig">Was $299</div>
-              <span class="serv-price-val">$250</span>
-            </div>
-            <span class="serv-price-period">one-time</span>
-          </div>
-        </div>
-        <div class="serv-save" id="sw-save">🔥 Save $49 — Launch Week only</div>
-
-        <hr class="serv-hr">
-        <ul class="serv-feats" id="sw-feats">
-          <li>Custom design for your industry &amp; brand</li>
-          <li>Mobile-first, SEO-ready, bilingual option</li>
-          <li>Contact form + WhatsApp button included</li>
-          <li>Your Google reviews showcased</li>
-          <li>You receive the full HTML file to publish</li>
-          <li>Step-by-step domain + hosting guide included</li>
-          <li>1 design revision round</li>
-        </ul>
-        <a href="#contacto" class="serv-btn" id="sw-btn">
-          Get started
-          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
-        </a>
-      </div>
-
-      <!-- TALOS PRO -->
-      <div class="serv-card featured-serv reveal delay-2">
-        <div class="serv-launch">Launch Price</div>
-        <div class="serv-tag">
-          <span>// Full service</span>
-          <span class="serv-tag-badge">MOST POPULAR</span>
-        </div>
-        <div class="serv-name" id="sfl-name">TALOS<br>PRO</div>
-        <p class="serv-tagline" id="sfl-tagline">We design AND publish. You only handle the domain — we guide you step by step.</p>
-
-        <div class="serv-price-wrap">
-          <div class="serv-price">
-            <div>
-              <div class="serv-price-orig">Was $699</div>
-              <span class="serv-price-val">$550</span>
-            </div>
-            <span class="serv-price-period">one-time</span>
-          </div>
-        </div>
-        <div class="serv-save" id="sfl-save">🔥 Save $149 — Launch Week · First change always FREE</div>
-
-        <hr class="serv-hr">
-        <ul class="serv-feats" id="sfl-feats">
-          <li>Everything in Starter</li>
-          <li>We publish the site for you</li>
-          <li>Hosting setup &amp; configuration included</li>
-          <li>You manage domain (we guide you through it)</li>
-          <li>2 design revision rounds</li>
-          <li><strong style="color:var(--gold)">First modification FREE</strong> — then $39.99 each</li>
-          <li>30-day post-launch email support</li>
-        </ul>
-        <a href="#contacto" class="serv-btn" id="sfl-btn">
-          Get Talos Pro
-          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
-        </a>
-      </div>
-
-      <!-- TALOS PREMIUM -->
-      <div class="serv-card reveal delay-3">
-        <div class="serv-launch">Launch Price</div>
-        <div class="serv-tag">
-          <span>// All-inclusive</span>
-          <span class="serv-tag-badge">ZERO HASSLE</span>
-        </div>
-        <div class="serv-name" id="sp-name">TALOS<br>PREMIUM</div>
-        <p class="serv-tagline" id="sp-tagline">We handle absolutely everything. Domain, design, hosting, publication. You just approve and go live.</p>
-
-        <div class="serv-price-wrap">
-          <div class="serv-price">
-            <div>
-              <div class="serv-price-orig">Was $999</div>
-              <span class="serv-price-val">$850</span>
-            </div>
-            <span class="serv-price-period">one-time</span>
-          </div>
-        </div>
-        <div class="serv-save" id="sp-save">🔥 Save $149 — Launch Week · Domain 1 year included</div>
-
-        <hr class="serv-hr">
-        <ul class="serv-feats" id="sp-feats">
-          <li>Everything in Pro</li>
-          <li><strong style="color:var(--gold)">.com domain registered for 1 year</strong></li>
-          <li>SSL certificate (security padlock) included</li>
-          <li>Google Business profile optimization</li>
-          <li>Live in 7 days — or your money back</li>
-          <li>60-day post-launch support</li>
-          <li>3 design revision rounds</li>
-        </ul>
-        <a href="#contacto" class="serv-btn" id="sp-btn">
-          Get Premium
-          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
-        </a>
-      </div>
-
-    </div>
-
-    <!-- INTEGRATIONS ADD-ON -->
-    <div class="serv-note reveal">
-      <div class="serv-note-icon">⚡</div>
-      <div class="serv-note-text" id="serv-note-text">
-        <strong>Need more power?</strong> Add integrations to any website plan — priced by complexity level. <strong>Level 1 from $35</strong> (WhatsApp button, contact form, Google Maps) up to <strong>Level 10 at $1,200</strong> (payment gateway, online booking system, custom automations, CRM sync). One-time fee. You describe what you need — we quote the level.
-      </div>
-    </div>
-
-    <!-- Meta-marketing wink -->
-    <div class="serv-meta reveal" style="margin-top:2px">
-      <div class="serv-meta-inner">
-        <div class="serv-meta-pulse"></div>
-        <div class="serv-meta-content">
-          <p class="serv-meta-label" id="serv-meta-label">// Live demo</p>
-          <p class="serv-meta-text" id="serv-meta-text">You're looking at it. This entire page — the design, the copy, the strategy, the automations — was built using exactly this service. From zero to published in one session. <strong>This is what we build for you.</strong></p>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -2309,19 +2242,19 @@ footer{
     <div class="faq-list reveal">
       <div class="faq-item">
         <button class="faq-q" id="fq1"><span>Do I need technical knowledge to use Talos?</span><div class="faq-icon"></div></button>
-        <div class="faq-a"><p id="fa1">None at all. You fill out a 15-minute intake form once — that's it. Our team handles everything from there. No tools to learn, no dashboards to manage, no campaigns to set up. You review results and approve. We run everything else.</p></div>
+        <div class="faq-a"><p id="fa1">None at all. You book a free 30-min audit, we diagnose your business, and we send you a 1-page proposal. If you approve, we handle everything from there. No tools to learn, no dashboards to manage, no campaigns to configure. You review results weekly. We run everything else.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" id="fq2"><span>How is Talos different from a marketing agency or ChatGPT?</span><div class="faq-icon"></div></button>
-        <div class="faq-a"><p id="fa2">A marketing agency costs $2,000-5,000/mo, works 9-5, and sends you reports two weeks late. ChatGPT is a tool — you prompt it, it responds, nothing happens automatically. Talos is a managed service: our team, powered by AI, runs your campaigns and monitors your finances 24/7 at a fraction of agency cost. You just see the results.</p></div>
+        <div class="faq-a"><p id="fa2">A marketing agency costs $2,000-5,000/mo, works 9-5, and sends reports two weeks late. ChatGPT is a tool — you prompt it, nothing happens automatically. Talos is a managed service: our team, powered by AI, runs your campaigns and monitors your finances 24/7 at a fraction of agency cost. You just see the results.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" id="fq3"><span>What channels does Talos Presence support right now?</span><div class="faq-icon"></div></button>
-        <div class="faq-a"><p id="fa3">Talos Presence currently manages Meta Ads and Instagram. Additional platforms — Google Ads, TikTok, LinkedIn — are built on demand when a client needs them. If you advertise somewhere else, email us and we'll scope it.</p></div>
+        <button class="faq-q" id="fq3"><span>What happens in the free audit?</span><div class="faq-icon"></div></button>
+        <div class="faq-a"><p id="fa3">We spend 30 minutes understanding your business — how you currently handle marketing, finances, and operations. We identify 3 specific areas where AI can cut your workload and grow revenue. Then within 48 hours we send a 1-page proposal with expected results in 30/60/90 days and an exact price. No commitment until you approve.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" id="fq4"><span>What happens before my agent goes live?</span><div class="faq-icon"></div></button>
-        <div class="faq-a"><p id="fa4">We run a dry-run first. Before any agent touches your accounts, we analyze your last 30 days of historical data and show you exactly what the agent would have done — every decision, every action, every reason. You review it, ask questions, and approve. Only then does it go live. Full transparency, always.</p></div>
+        <div class="faq-a"><p id="fa4">We run a dry-run first. Before any agent touches your accounts, we analyze your last 30 days of historical data and show you exactly what the agent would have done — every decision, every action, every reason. You review it, ask questions, and approve. Only then does it go live.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" id="fq5"><span>Is my business data safe?</span><div class="faq-icon"></div></button>
@@ -2333,7 +2266,7 @@ footer{
       </div>
       <div class="faq-item">
         <button class="faq-q" id="fq7"><span>What is Talos Lead and how is it priced?</span><div class="faq-icon"></div></button>
-        <div class="faq-a"><p id="fa7">Talos Lead is our Business Management service — operational workflows, inbox management, process automation, custom internal systems. Because every business operates differently, this is always scoped and quoted per project. Minimum engagement is $500/mo. Book a discovery call and we'll tell you exactly what we'd build for your specific situation.</p></div>
+        <div class="faq-a"><p id="fa7">Talos Lead is our Business Management service — operational workflows, inbox management, process automation, custom internal systems. Because every business is different, this is always scoped and quoted per project after a discovery call. Book your free audit and mention it — we'll scope it specifically for you.</p></div>
       </div>
     </div>
   </div>
@@ -2343,9 +2276,9 @@ footer{
 <section id="contacto">
   <div class="contact-inner">
     <div class="reveal-left">
-      <div class="eyebrow" id="contact-eyebrow">Contact Us</div>
-      <h2 id="contact-h2">LET'S<br><em>TALK.</em></h2>
-      <p id="contact-sub">Email us at <strong>help@ai-talos.com</strong> with your business name, what you do, and your biggest challenge. We respond within 24 hours with a specific recommendation. No calls, no commitment.</p>
+      <div class="eyebrow" id="contact-eyebrow">Free AI Audit</div>
+      <h2 id="contact-h2">BOOK YOUR<br><em>FREE AUDIT.</em></h2>
+      <p id="contact-sub">30 minutes. We analyze your business, identify the 3 biggest opportunities for AI, and show you exactly what results you can expect. No pitch, no pressure — just a specific diagnosis for your operation.</p>
       <div class="contact-detail">
         <div class="contact-detail-icon">
           <svg viewBox="0 0 14 14"><path d="M2 3h10v8H2z" stroke-width="1.2"/><path d="M2 3l5 5 5-5" stroke-width="1.2"/></svg>
@@ -2360,36 +2293,31 @@ footer{
           <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="5" stroke-width="1.2"/><path d="M7 4v3l2 2" stroke-width="1.2" stroke-linecap="round"/></svg>
         </div>
         <div class="contact-detail-text">
-          <strong id="contact-hours">Mon – Fri, 9am – 6pm EST</strong>
-          <span id="contact-tz">Eastern Time</span>
+          <strong id="contact-hours">30-minute call · Free · No commitment</strong>
+          <span id="contact-tz">We'll send you a confirmation within 24 hours</span>
         </div>
       </div>
     </div>
     <div class="reveal-right">
-      <form class="contact-form" id="contact-form" novalidate>
-        <div class="cf-row">
-          <div class="cf-field">
-            <label id="cf-name-lbl" for="cf-name">Your name</label>
-            <input type="text" id="cf-name" name="nombre" autocomplete="name" placeholder="John Smith…" required>
-          </div>
-          <div class="cf-field">
-            <label id="cf-email-lbl" for="cf-email">Email</label>
-            <input type="email" id="cf-email" name="email" autocomplete="email" placeholder="john@business.com…" required spellcheck="false">
-          </div>
+      <div class="booking-card">
+        <div class="booking-meta">
+          <div class="booking-meta-item"><span class="booking-meta-dot"></span>30 minutes</div>
+          <div class="booking-meta-item"><span class="booking-meta-dot"></span>Free</div>
+          <div class="booking-meta-item"><span class="booking-meta-dot"></span>No commitment</div>
         </div>
-        <div class="cf-field">
-          <label id="cf-biz-lbl" for="cf-biz">Business name</label>
-          <input type="text" id="cf-biz" name="negocio" autocomplete="organization" placeholder="Your Business LLC…">
+        <div style="font-family:var(--display);font-size:22px;font-weight:700;margin-bottom:6px;line-height:1.1">YOUR FREE<br>AI AUDIT</div>
+        <div style="font-size:13px;font-weight:300;color:var(--muted);margin-bottom:28px;line-height:1.6">Pick a time that works for you. We confirm within minutes and show up prepared.</div>
+        <div class="booking-what">
+          <div class="booking-what-item"><span class="booking-check">→</span>We analyze your current marketing, finance, and operations setup</div>
+          <div class="booking-what-item"><span class="booking-check">→</span>We identify 3 specific areas where AI can reduce workload and grow revenue</div>
+          <div class="booking-what-item"><span class="booking-check">→</span>You receive a 1-page proposal with results and pricing within 48 hours</div>
+          <div class="booking-what-item"><span class="booking-check">→</span>No pitch. No pressure. Just a concrete diagnosis for your business.</div>
         </div>
-        <div class="cf-field">
-          <label id="cf-msg-lbl" for="cf-msg">Message</label>
-          <textarea id="cf-msg" name="mensaje" placeholder="Tell us about your business and what you need…" required></textarea>
-        </div>
-        <button type="submit" class="contact-btn" id="cf-btn">Send message →</button>
-      </form>
-      <div class="contact-success" id="contact-success" aria-live="polite" role="status">
-        <strong id="cs-title">Message received. ✓</strong><br>
-        <span id="cs-body">We'll review your business details and get back to you within 24 hours with a free strategy recommendation.</span>
+        <a href="https://calendly.com/talosaico/free-ai-audit-30-min" target="_blank" class="booking-cta btn-magnetic" id="calendly-main-cta">
+          Schedule my free audit
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
+        </a>
+        <p class="booking-fallback">Prefer email? <a href="mailto:help@ai-talos.com">help@ai-talos.com</a></p>
       </div>
     </div>
   </div>
@@ -2598,30 +2526,6 @@ document.querySelectorAll('.faq-q').forEach(btn => {
   });
 });
 
-/* ── CONTACT FORM ── */
-document.getElementById('contact-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const btn = document.getElementById('cf-btn');
-  btn.disabled = true;
-  btn.textContent = 'Sending…';
-  const d = {
-    type: 'contact',
-    nombre: document.getElementById('cf-name').value,
-    email: document.getElementById('cf-email').value,
-    negocio: document.getElementById('cf-biz').value || '—',
-    mensaje: document.getElementById('cf-msg').value,
-    fecha: new Date().toISOString().split('T')[0]
-  };
-  fetch('https://hook.us2.make.com/deusawob1pzbj3baqrmocos1u4zxnc3s', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(d)
-  }).catch(() => {}).finally(() => {
-    this.style.display = 'none';
-    document.getElementById('contact-success').style.display = 'block';
-  });
-});
-
 /* ── CHIPS ── */
 document.querySelectorAll('.chip').forEach(c => {
   c.addEventListener('click', () => c.classList.toggle('selected'));
@@ -2777,7 +2681,7 @@ const es = {
   'p2-tier':'// Más popular','p2-tag':'Nosotros lo ejecutamos. Vos aprobás.','p2-save':'3 agentes incluidos · Mix libre de categorías',
   'p3-tier':'// Cobertura total','p3-tag':'Nosotros manejamos todo.','p3-save':'6 agentes incluidos · Cobertura total',
   'p1-btn':'Empezar','p2-btn':'Activar Growth →','p3-btn':'Empezar',
-  'planes-bottom':'La regla de oro: cobrar el 10–20% del valor generado.<br><strong>Agentes adicionales sobre tu tier: $79/agente/mes. Talos Lead siempre se cotiza de forma personalizada.</strong>',
+  'planes-bottom':'Sin cargo de configuración · Sin contratos · Cancelá cuando quieras.<br><strong>Agentes adicionales sobre tu tier: $79/agente/mes.</strong>',
   'nav-servicios':'Servicios',
   'serv-eyebrow':'Servicios One-Time',
   'serv-h2':'NOSOTROS LO CONSTRUIMOS.<br><em>VOS LO LANZÁS.</em>',
@@ -2815,17 +2719,17 @@ const es = {
   'fa4':'Hacemos un dry-run primero. Antes de que cualquier agente toque tus cuentas, te mostramos exactamente qué habría hecho contra tus últimos 30 días. Vos aprobás — recién entonces va en vivo.',
   'fq5':'¿Puedo cancelar cuando quiero?',
   'fa5':'Sí. Sin contratos, sin cargos por cancelación. Cancelá cuando quieras escribiéndonos. Confiamos en que te vas a quedar por los resultados, no porque estés atrapado.',
-  'contact-eyebrow':'Contacto',
-  'contact-h2':'HABLEMOS.',
-  'contact-sub':'¿Listo para delegar tu marketing y operaciones? Contanos sobre tu negocio y te armamos una recomendación estratégica gratuita — sin compromisos. Respondemos en menos de 24 horas.',
+  'contact-eyebrow':'Auditoría Gratuita de IA',
+  'contact-h2':'RESERVÁ TU<br><em>AUDITORÍA GRATIS.</em>',
+  'contact-sub':'30 minutos. Analizamos tu negocio, identificamos las 3 mayores oportunidades de IA y te mostramos exactamente qué resultados podés esperar. Sin pitch, sin presión — solo un diagnóstico específico para tu operación.',
   'contact-email':'help@ai-talos.com',
   'contact-response':'Respondemos en menos de 24 horas',
-  'contact-hours':'Lun – Vie, 9am – 6pm EST',
-  'contact-tz':'Hora del Este',
-  'cf-name-lbl':'Tu nombre','cf-email-lbl':'Email','cf-biz-lbl':'Nombre del negocio','cf-msg-lbl':'Mensaje',
-  'cf-btn':'Enviar mensaje →',
-  'cs-title':'Mensaje recibido. ✓',
-  'cs-body':'Revisamos los detalles de tu negocio y te respondemos en menos de 24 horas con una recomendación estratégica gratuita.',
+  'contact-hours':'30 minutos · Gratis · Sin compromiso',
+  'contact-tz':'Te confirmamos el horario en menos de 24 horas',
+  'cf-name-lbl':'Tu nombre','cf-email-lbl':'Email','cf-biz-lbl':'Nombre del negocio e industria','cf-msg-lbl':'¿Cuál es tu mayor dolor operativo ahora mismo?',
+  'cf-btn':'Reservar mi auditoría gratis →',
+  'cs-title':'Solicitud recibida. ✓',
+  'cs-body':'Revisamos tus datos y nos contactamos en menos de 24 horas para confirmar tu slot de auditoría de 30 minutos. Sin compromiso.',
   'ob-h2':'EMPEZÁ TU <em>SERVICIO.</em>',
   'ob-sub':'15 minutos. Una sola vez. Nosotros nos encargamos.',
   'ob-side-label':'// Intake del cliente',
@@ -2847,16 +2751,16 @@ const es = {
   'success-h3':'SERVICIO <em>ACTIVADO.</em>',
   'success-p':'Recibimos la información de tu negocio. En 24 horas nuestro equipo va a generar tu primera campaña. Revisá tu email.',
   'mm-text':'<strong>Esta página fue construida por nuestro equipo con IA.</strong> El copy lo escribió una IA. El diseño lo dirigió una IA. La estrategia la definió una IA. Esto es lo que hacemos por tu negocio — todos los días, sin que vos tengas que hacer nada.',
-  'ub-text':'<strong>Quedan 8 de 10 slots fundadores</strong> — Bloqueá el plan Growth (3 agentes) a $199/mes para siempre. Precio público: $299.',
-  'ub-cta':'Reservá tu slot →',
+  'ub-text':'<strong>Quedan 8 de 10 slots fundadores</strong> — Bloqueá el plan Growth a $199/mes para siempre. Precio público: $299/mo.',
+  'ub-cta':'Reservar auditoría gratis →',
   'como-eyebrow':'Cómo funciona',
   'como-h2':'4 PASOS.<br><em>NOSOTROS HACEMOS EL TRABAJO.</em>',
-  'como1-h':'Escribinos un email',
-  'como1-p':'Mandanos un email con el nombre de tu negocio, qué hacés y tu mayor problema. Respondemos en 24 horas con una recomendación específica. Sin llamadas.',
-  'como1-tag':'Email · Respuesta en 24hs · Gratis',
-  'como2-h':'Completá tu formulario de intake',
-  'como2-p':'15 minutos. Una sola vez. Contanos tu producto, cliente ideal, voz de marca y objetivos. Lo hacés una vez — construimos tu perfil de contexto de negocio para siempre.',
-  'como2-tag':'~15 minutos · Una sola vez',
+  'como1-h':'Reservá una auditoría gratis',
+  'como1-p':'30 minutos. Analizamos tu negocio, identificamos 3 áreas donde la IA puede reducir tu carga de trabajo y aumentar tus ingresos — y te mostramos exactamente cómo para tu operación específica. Sin compromiso.',
+  'como1-tag':'Gratis · 30 minutos · Sin compromiso',
+  'como2-h':'Recibís una propuesta de 1 página',
+  'como2-p':'En 48 horas te mandamos una propuesta específica: qué vamos a gestionar, qué resultados podés esperar en 30/60/90 días y el precio exacto. Una página. Sin sorpresas.',
+  'como2-tag':'Email · Entrega en 48hs · Específico para vos',
   'como3-h':'Hacemos un dry-run primero',
   'como3-p':'Antes de que cualquier agente esté en vivo, te mostramos exactamente qué habría hecho contra tus últimos 30 días de datos. Ves cada decisión y el porqué. Vos aprobás — recién entonces va en vivo.',
   'como3-tag':'Transparencia total · Vos aprobás primero',
@@ -3297,6 +3201,98 @@ window.addEventListener('scroll', () => {
     heroCanvas.style.transform = `translateY(${window.scrollY * 0.3}px)`;
   }
 }, {passive:true});
+
+/* ── TEXT SCRAMBLE ON HEADINGS ── */
+(function(){
+  const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$<>/\\|{}[]';
+
+  function scramble(el) {
+    const textNodes = [];
+    const walk = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+    let n;
+    while(n = walk.nextNode()){
+      if(n.textContent.trim().length > 0) textNodes.push({node:n, orig:n.textContent});
+    }
+    if(!textNodes.length) return;
+
+    let frame = 0;
+    const total = 44;
+
+    function tick(){
+      frame++;
+      const progress = frame / total;
+      textNodes.forEach(({node, orig}) => {
+        const arr = orig.split('');
+        const revealed = Math.floor(progress * arr.length);
+        let out = '';
+        for(let i = 0; i < arr.length; i++){
+          if(arr[i] === '\n' || arr[i] === ' '){out += arr[i]; continue;}
+          out += i < revealed ? arr[i] : CHARS[Math.floor(Math.random()*CHARS.length)];
+        }
+        node.textContent = out;
+      });
+      if(frame < total) requestAnimationFrame(tick);
+      else textNodes.forEach(({node, orig}) => node.textContent = orig);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting && !e.target.dataset.scrambled){
+        e.target.dataset.scrambled = '1';
+        setTimeout(() => scramble(e.target), 120);
+        obs.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.35});
+
+  document.querySelectorAll('.section-h2').forEach(h => obs.observe(h));
+})();
+
+/* ── COUNTER ANIMATION ── */
+(function(){
+  function countUp(el){
+    const raw = el.textContent.trim();
+    if(raw === '24/7') return;
+    const num = parseFloat(raw.replace(/[^\d.]/g, ''));
+    if(isNaN(num) || num === 0) return;
+
+    let startTs = null;
+    const duration = 1700;
+    const isPercent = raw.includes('%');
+    const isX = raw.includes('×');
+    const isDollar = raw.startsWith('$');
+
+    function step(ts){
+      if(!startTs) startTs = ts;
+      const p = Math.min((ts - startTs) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const cur = Math.floor(eased * num);
+
+      if(isPercent) el.textContent = cur + '%';
+      else if(isX)  el.textContent = cur + '×';
+      else if(isDollar) el.textContent = '$' + cur;
+      else el.textContent = cur;
+
+      if(p < 1) requestAnimationFrame(step);
+      else el.textContent = raw;
+    }
+    requestAnimationFrame(step);
+  }
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting && !e.target.dataset.counted){
+        e.target.dataset.counted = '1';
+        countUp(e.target);
+        obs.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.6});
+
+  document.querySelectorAll('.proof-num, .pstat-n').forEach(el => obs.observe(el));
+})();
 </script>
 </body>
 </html>
